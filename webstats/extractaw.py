@@ -56,7 +56,7 @@ class Catalog():
     
     print hits, hits/20*'|', self.books[str(book)]
     
-  def matplotcumulative(self):
+  def matplotcumulative(self,ID=False):
     """
     produce cumulative graph
     
@@ -92,6 +92,9 @@ class Catalog():
     #store data to plot here so we can sort before plotting
     plots = []
     for book in self.books:
+      if ID and book!=str(ID):
+	print 'skipping', repr(ID), repr(book)
+	continue
       print book,':',
       tmp = 0 
       #initialize axes
@@ -138,7 +141,11 @@ class Catalog():
     ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     #save file
-    plt.savefig('test.png') 
+    if ID:
+      plt.savefig('cumulative%s.png'%ID)
+    else:
+      plt.savefig('cumulativeall.png')
+    
 	
 	  
       
@@ -188,4 +195,6 @@ class Stats():
 if __name__=='__main__':
   c = Catalog()
   c.matplotcumulative() 
+  for b in c.books: 
+    c.matplotcumulative(ID=b)
 	
