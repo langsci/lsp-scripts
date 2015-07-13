@@ -4,7 +4,10 @@ import os
 import BeautifulSoup
 import sys
 import numpy as np
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
+import matplotlib.colors as mplcolors
   
 class Catalog():
   def __init__(self, books='books.tsv'):
@@ -70,10 +73,20 @@ class Catalog():
     #use a wide picture
     fig.set_figwidth(12)
     ax = plt.subplot(111)
+    #fig.add_subplot(ax)
+     
+    #fig.patch.set_visible(False)
+    #ax.axis('off')
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.yaxis.set_ticks_position('left')
+    ax.xaxis.set_ticks_position('bottom')
     
     #setup colors and shapes to select from
-    colors = 'bgrcmyk'
-    shapes = 'v^osp*+xD'
+    colors = mplcolors.cnames.keys()
+    print colors
+    #colors = 'bgrcmyk'
+    shapes = 'v^osp*D'
     
     #store data to plot here so we can sort before plotting
     plots = []
@@ -81,8 +94,8 @@ class Catalog():
       print book,':',
       tmp = 0 
       #initialize axes
-      x = range(len(labels))
-      y = [0 for i in range(len(labels))]
+      x = range(len(labels)+1)
+      y = [None for i in range(len(labels)+1)]
       #update values for axes
       for i,month in enumerate(labels):	 
 	try:
@@ -102,13 +115,14 @@ class Catalog():
       plots.append((x,y,c,s,self.books[book])) 
     #sort plot data according to highest total downloads
     #Then plot the plots
-    for plot in sorted(plots, key=lambda k: k[1][-1],reverse=True): 
+    for plot in sorted(plots, key=lambda k: k[1][-2],reverse=True): 
+      print plot
       #plot line
-      ax.plot(plot[0],plot[1],'%s-'%plot[2],linewidth=1.5)
+      ax.plot(plot[0],plot[1] ,color=plot[2],linewidth=1.5)
       #plot marks
-      ax.plot(plot[0],plot[1],'%s%s'%(plot[2],plot[3]),label=plot[4])
+      ax.plot(plot[0],plot[1],plot[3],color=plot[2],label=plot[4])
     #plot x-axis labels
-    plt.xticks(x, [l[-5:].replace('-.','/') for l in labels])
+    plt.xticks(x, [l[-2:].replace('-.','/') for l in labels])
     #position legend box
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
