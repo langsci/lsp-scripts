@@ -81,7 +81,8 @@ class Catalog():
     ax.spines['top'].set_visible(False)
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
-    
+    ax.set_ylabel('downloads')
+    ax.set_xlabel('months')
     #setup colors and shapes to select from
     colors = mplcolors.cnames.keys()
     print colors
@@ -104,6 +105,12 @@ class Catalog():
 	except KeyError:#no downloads this month
 	  y[i] = tmp
       print y  
+      for i,j in enumerate(y):
+	if i == 0:
+	  continue
+	if y[i]==0:
+	  y[i-1]=None
+      print y
       #colors and shapes for lines should be identical for 
       #a book across several graphics, but different for 
       #different books. Use a hash function to assign colors
@@ -117,10 +124,13 @@ class Catalog():
     #Then plot the plots
     for plot in sorted(plots, key=lambda k: k[1][-2],reverse=True): 
       print plot
+      if plot[1][-2]<30: #make sure no test or bogus data are displayed
+	continue
       #plot line
       ax.plot(plot[0],plot[1] ,color=plot[2],linewidth=1.5)
       #plot marks
       ax.plot(plot[0],plot[1],plot[3],color=plot[2],label=plot[4])
+      ax.text(len(labels)-1, plot[1][-2], '  %s'%plot[1][-2], fontsize=7) 
     #plot x-axis labels
     plt.xticks(x, [l[-2:].replace('-.','/') for l in labels])
     #position legend box
