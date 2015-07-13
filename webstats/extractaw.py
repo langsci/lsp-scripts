@@ -8,11 +8,12 @@ import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.colors as mplcolors
+
   
 class Catalog():
   def __init__(self, books='books.tsv'):
     #read ID and title of books from file
-    self.books = dict([l.strip().split('\t') for l in open(books).readlines()]) 
+    self.books = dict([l.strip().split('\t') for l in open(books).read().decode('iso-8859-1').split('\n')]) 
     #collect all directories with access information
     self.dirs = glob.glob('webreport_langsci-press.org_catalog_20[0-9][0-9]_[01][0-9]')
     #extract access data from all log files
@@ -75,6 +76,7 @@ class Catalog():
     ax = plt.subplot(111)
     #fig.add_subplot(ax)
      
+    plt.rc('legend',**{'fontsize':9}) 
     #fig.patch.set_visible(False)
     #ax.axis('off')
     ax.spines['right'].set_visible(False)
@@ -82,9 +84,9 @@ class Catalog():
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
     ax.set_ylabel('downloads')
-    ax.set_xlabel('months')
+    ax.set_xlabel('months')   
     #setup colors and shapes to select from
-    colors = mplcolors.cnames.keys()
+    colors = plt.cm.Set1(np.linspace(0, 1, 45))
     print colors
     #colors = 'bgrcmyk'
     shapes = 'v^osp*D'
@@ -107,11 +109,11 @@ class Catalog():
 	  tmp = y[i]
 	except KeyError:#no downloads this month
 	  y[i] = tmp
-      print y  
+      #print y  
       for i,j in enumerate(y):
 	if i == 0:
 	  continue
-	if y[i]==0:
+	if y[i]!=None and y[i]<70:
 	  y[i-1]=None
       print y
       #colors and shapes for lines should be identical for 
@@ -122,24 +124,35 @@ class Catalog():
       c = colors[seed%len(colors)]
       s = shapes[seed%len(shapes)]
       #store plot data for future usage
-      plots.append((x,y,c,s,self.books[book])) 
+      plots.append([x,y,c,s,self.books[book]]) 
     #sort plot data according to highest total downloads
     #Then plot the plots
     for plot in sorted(plots, key=lambda k: k[1][-2],reverse=True): 
-      print plot
+      #print plot
       if plot[1][-2]<30: #make sure no test or bogus data are displayed
 	continue
+      #print labels
+      if ID!=False:
+	n = 0	
+	for t in y:
+	  if t==None:
+	    n += 1
+	plot[0] = plot[0][n:]
+	plot[1] = plot[1][n:]
+	labels = labels[n:]
+      print len(plot[0]),len(plot[1]),len(labels)
+      print plot
       #plot line
       ax.plot(plot[0],plot[1] ,color=plot[2],linewidth=1.5)
       #plot marks
       ax.plot(plot[0],plot[1],plot[3],color=plot[2],label=plot[4])
       ax.text(len(labels)-1, plot[1][-2], '  %s'%plot[1][-2], fontsize=7) 
     #plot x-axis labels
-    plt.xticks(x, [l[-2:].replace('-.','/') for l in labels])
+    plt.xticks(x, [l[-5:].replace('_','/') for l in labels], fontsize = 10) 
     #position legend box
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
-    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
     #save file
     if ID:
       plt.savefig('cumulative%s.png'%ID)
@@ -195,6 +208,6 @@ class Stats():
 if __name__=='__main__':
   c = Catalog()
   c.matplotcumulative() 
-  for b in c.books: 
-    c.matplotcumulative(ID=b)
+  #for b in c.books: 
+    #c.matplotcumulative(ID=b)
 	
