@@ -66,8 +66,7 @@ class Catalog():
     """
     
     #sort the keys so we get them in temporal order
-    labels = sorted(self.monthstats.keys())
-    print labels
+    labels = sorted(self.monthstats.keys()) 
     
     #setup matplot 
     fig = plt.figure()
@@ -86,8 +85,7 @@ class Catalog():
     ax.set_ylabel('downloads')
     ax.set_xlabel('months')   
     #setup colors and shapes to select from
-    colors = plt.cm.Set1(np.linspace(0, 1, 45))
-    print colors
+    colors = plt.cm.Set1(np.linspace(0, 1, 45)) 
     #colors = 'bgrcmyk'
     shapes = 'v^osp*D'
     
@@ -95,7 +93,7 @@ class Catalog():
     plots = []
     for book in self.books:
       if ID and book!=str(ID):
-	print 'skipping', repr(ID), repr(book)
+	#print 'skipping', repr(ID), repr(book)
 	continue
       print book,':',
       tmp = 0 
@@ -108,8 +106,7 @@ class Catalog():
 	  y[i] = tmp+self.monthstats[month][int(book)]
 	  tmp = y[i]
 	except KeyError:#no downloads this month
-	  y[i] = tmp
-      #print y  
+	  y[i] = tmp 
       for i,j in enumerate(y):
 	if i == 0:
 	  continue
@@ -127,6 +124,8 @@ class Catalog():
       plots.append([x,y,c,s,self.books[book]]) 
     #sort plot data according to highest total downloads
     #Then plot the plots
+    n = 0	
+    origlabels = labels
     for plot in sorted(plots, key=lambda k: k[1][-2],reverse=True): 
       #print plot
       if plot[1][-2]<30: #make sure no test or bogus data are displayed
@@ -137,18 +136,17 @@ class Catalog():
 	for t in y:
 	  if t==None:
 	    n += 1
-	plot[0] = plot[0][n:]
-	plot[1] = plot[1][n:]
-	labels = labels[n:]
-      print len(plot[0]),len(plot[1]),len(labels)
-      print plot
+	plot[0] = plot[0][n-1:]
+	plot[1] = plot[1][n-1:]
+	labels = labels[n:] 
       #plot line
       ax.plot(plot[0],plot[1] ,color=plot[2],linewidth=1.5)
+      #ax.plot((1,2,3),(4,5,6) ,color=plot[2],linewidth=1.5)
       #plot marks
-      ax.plot(plot[0],plot[1],plot[3],color=plot[2],label=plot[4])
-      ax.text(len(labels)-1, plot[1][-2], '  %s'%plot[1][-2], fontsize=7) 
+      ax.plot(plot[0],plot[1],plot[3],color=plot[2],label=plot[4]) 
+      ax.text(len(origlabels)-1, plot[1][-2], '  %s'%plot[1][-2], fontsize=7) 
     #plot x-axis labels
-    plt.xticks(x, [l[-5:].replace('_','/') for l in labels], fontsize = 10) 
+    plt.xticks(x[n:], [l[-5:].replace('_','/') for l in labels], fontsize = 10) 
     #position legend box
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
@@ -207,7 +205,11 @@ class Stats():
     
 if __name__=='__main__':
   c = Catalog()
+  print 30*'-'
+  print "global plot"
   c.matplotcumulative() 
-  #for b in c.books: 
-    #c.matplotcumulative(ID=b)
+  print 30*'-'
+  print "individual plots"
+  for b in c.books: 
+    c.matplotcumulative(ID=b)
 	
