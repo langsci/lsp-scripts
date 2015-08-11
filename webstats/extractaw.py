@@ -57,7 +57,7 @@ class Catalog():
     
     print hits, hits/20*'|', self.books[str(book)]
     
-  def matplotcumulative(self,ID=False):
+  def matplotcumulative(self,ID=False, legend=True, fontsizetotal=15, threshold=99):
     """
     produce cumulative graph
     
@@ -99,19 +99,24 @@ class Catalog():
       tmp = 0 
       #initialize axes
       x = range(len(labels)+1)
-      y = [None for i in range(len(labels)+1)]
+      y = [None for i in range(len(labels))]
       #update values for axes
       for i,month in enumerate(labels):	 
 	try:
 	  y[i] = tmp+self.monthstats[month][int(book)]
 	  tmp = y[i]
 	except KeyError:#no downloads this month
-	  y[i] = tmp 
+	  y[i] = tmp  
       for i,j in enumerate(y):
-	if i == 0:
+	if i == 0:#avoid IndexError when subtracting
 	  continue
-	if y[i]!=None and y[i]<70:
+	if y[i]!=None and y[i]<threshold:
 	  y[i-1]=None
+      #if total is lower than threshold, do not display at all
+      if y[-1]<threshold:
+	y[-1] = None
+      #reserve space for labels
+      y.append(None)
       print y
       #colors and shapes for lines should be identical for 
       #a book across several graphics, but different for 
@@ -144,17 +149,22 @@ class Catalog():
       #ax.plot((1,2,3),(4,5,6) ,color=plot[2],linewidth=1.5)
       #plot marks
       ax.plot(plot[0],plot[1],plot[3],color=plot[2],label=plot[4]) 
-      ax.text(len(origlabels)-1, plot[1][-2], '  %s'%plot[1][-2], fontsize=7) 
+      ax.text(len(origlabels)-1, plot[1][-2], '  %s'%plot[1][-2], fontsize=fontsizetotal) 
     #plot x-axis labels
     plt.xticks(x[n:], [l[-5:].replace('_','/') for l in labels], fontsize = 10) 
     #position legend box
-    box = ax.get_position()
-    ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
-    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
+    if legend:
+      box = ax.get_position()
+      ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
+      ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
+    #else:
+      #ax.legend_.remove()
     #save file
     if ID:
+      plt.savefig('cumulative%s.svg'%ID)
       plt.savefig('cumulative%s.png'%ID)
     else:
+      plt.savefig('cumulativeall.svg')
       plt.savefig('cumulativeall.png')
     
 	
@@ -207,9 +217,9 @@ if __name__=='__main__':
   c = Catalog()
   print 30*'-'
   print "global plot"
-  c.matplotcumulative() 
+  c.matplotcumulative(fontsizetotal=7) 
   print 30*'-'
   print "individual plots"
   for b in c.books: 
-    c.matplotcumulative(ID=b)
+    c.matplotcumulative(ID=b, legend=False)
 	
