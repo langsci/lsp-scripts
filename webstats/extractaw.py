@@ -192,8 +192,13 @@ class Catalog():
     colors = [cmap(i) for i in np.linspace(0, 1, threshold+1)]
     #setup matplot 
     fig = plt.figure()
-    plt.axis("equal")
+    plt.axis("equal") 
+    fig.set_figwidth(12)
+    ax = plt.subplot(111)
+    box = ax.get_position()
+    ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
     plt.pie(values, labels=labels, colors=colors, labeldistance=1.4)
+    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
     plt.savefig('countries.png') 
     plt.savefig('countries.svg') 
 	  
