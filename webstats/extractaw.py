@@ -163,8 +163,8 @@ class Catalog():
       #ax.legend_.remove()
     #save file
     if ID:
-      plt.savefig('cumulative%s.svg'%ID)
-      plt.savefig('cumulative%s.png'%ID)
+      plt.savefig('%s.svg'%ID)
+      plt.savefig('%s.png'%ID)
     else:
       plt.savefig('cumulativeall.svg')
       plt.savefig('cumulativeall.png')
