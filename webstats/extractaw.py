@@ -169,7 +169,7 @@ class Catalog():
       plt.savefig('cumulativeall.svg')
       plt.savefig('cumulativeall.png')
    
-  def plotCountries(self):
+  def plotCountries(self,threshold=12):
     d = {}
     for m in self.countrystats:
       md = self.countrystats[m]
@@ -182,16 +182,18 @@ class Catalog():
     for k in d:
       print k, d[k]
     l = [(k,d[k]) for k in d]        
-    l.sort(key=lambda x: x[1], reverse=True)   
-    labels = ['%s: %s'%t for t in l]
-    for i in range(13,len(labels)):
+    l.sort(key=lambda x: x[1], reverse=True) 
+    values = [t[1] for t in l][:threshold]+[sum([t[1] for t in l][threshold:])]  
+    labels = ['%s: %s'%t for t in l][:threshold]+['Other:%s'%values[-1]]
+    for i in range(threshold+1,len(labels)):
       labels[i]=''
-    values = [t[1] for t in l]
+    print labels, values
     cmap = plt.get_cmap('Paired')
-    colors = [cmap(i) for i in np.linspace(0, 1, 20)]
+    colors = [cmap(i) for i in np.linspace(0, 1, threshold+1)]
     #setup matplot 
     fig = plt.figure()
-    plt.pie(values, labels=labels, colors=colors)
+    plt.axis("equal")
+    plt.pie(values, labels=labels, colors=colors, labeldistance=1.4)
     plt.savefig('countries.png') 
     plt.savefig('countries.svg') 
 	  
@@ -278,12 +280,12 @@ class CountryStats(Stats):
 if __name__=='__main__':
   c = Catalog()
   print "country plot"
-  c.plotCountries()
-  print 30*'-'
-  print "global plot"
-  c.matplotcumulative(fontsizetotal=7) 
-  print 30*'-'
-  print "individual plots"
-  for b in c.books: 
-    c.matplotcumulative(ID=b, legend=False)
+  c.plotCountries(threshold=13)
+  #print 30*'-'
+  #print "global plot"
+  #c.matplotcumulative(fontsizetotal=7) 
+  #print 30*'-'
+  #print "individual plots"
+  #for b in c.books: 
+    #c.matplotcumulative(ID=b, legend=False)
 	
