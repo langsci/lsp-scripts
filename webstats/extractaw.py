@@ -18,6 +18,8 @@ class Catalog():
     self.dirs = glob.glob('webreport_langsci-press.org_catalog_20[0-9][0-9]_[01][0-9]')
     #extract access data from all log files
     self.monthstats = dict([(d[-7:],Stats(os.path.join(d,'awstats.langsci-press.org.urldetail.html')).getBooks()) for d in self.dirs]) 
+    self.countrystats = dict([(d[-7:],CountryStats(os.path.join(d,'awstats.langsci-press.org.alldomains.html')).getCountries()) for d in self.dirs]) 
+    #print self.countrystats
   
   def plotall(self): 
     for month in self.monthstats: 
@@ -66,7 +68,7 @@ class Catalog():
     """
     
     #sort the keys so we get them in temporal order
-    labels = sorted(self.monthstats.keys()) 
+    labels = sorted(self.monthstats.keys())   
     
     #setup matplot 
     fig = plt.figure()
@@ -166,11 +168,35 @@ class Catalog():
     else:
       plt.savefig('cumulativeall.svg')
       plt.savefig('cumulativeall.png')
-    
-	
+   
+  def plotCountries(self):
+    d = {}
+    for m in self.countrystats:
+      md = self.countrystats[m]
+      for c in md:
+	try:
+	  d[c] += int(md[c].replace(',',''))
+	except KeyError:
+	  d[c] = int(md[c].replace(',',''))
+	      
+    for k in d:
+      print k, d[k]
+    l = [(k,d[k]) for k in d]        
+    l.sort(key=lambda x: x[1], reverse=True)   
+    labels = ['%s: %s'%t for t in l]
+    for i in range(13,len(labels)):
+      labels[i]=''
+    values = [t[1] for t in l]
+    cmap = plt.get_cmap('Paired')
+    colors = [cmap(i) for i in np.linspace(0, 1, 20)]
+    #setup matplot 
+    fig = plt.figure()
+    plt.pie(values, labels=labels, colors=colors)
+    plt.savefig('countries.png') 
+    plt.savefig('countries.svg') 
 	  
       
-       
+     
     
 class Stats():
   def __init__(self,f):
@@ -190,7 +216,9 @@ class Stats():
 				  .find('table',attrs={'class':'aws_data'})\
 				  .findAll('tr')[1:]
 		      ]
-		  )
+		  )    
+
+
     
   def getBooks(self):
     """
@@ -213,8 +241,44 @@ class Stats():
 	  d[i] = self.hits[k]
     return d
     
+        
+  def getCountries(self):
+    """
+    analyze the access data and aggregate stats for countries
+    """
+    
+    d = {}
+    for k in self.hits: 
+	try:
+	  #accumulate figures for the various publication formats
+	  d[k] += self.hits[k]
+	except KeyError:
+	  d[k] = self.hits[k] 
+    return d
+   
+class CountryStats(Stats):
+  def __init__(self,f):
+    """
+    navigate the html file to find the relevant <td>s and
+    create a dictionary mapping urls to download figures
+    """		  
+    self.hits = dict(
+		      [
+			(
+			  #locate key
+			  tr.findAll('td')[2].text,
+			  #remove thousands separator and convert value to int
+			  tr.findAll('td')[4].text
+			) for tr in BeautifulSoup.BeautifulSoup(open(f))\
+				  .find('table',attrs={'class':'aws_data'})\
+				  .findAll('tr')[1:]
+		      ]
+		  )  
+		  
 if __name__=='__main__':
   c = Catalog()
+  print "country plot"
+  c.plotCountries()
   print 30*'-'
   print "global plot"
   c.matplotcumulative(fontsizetotal=7) 
