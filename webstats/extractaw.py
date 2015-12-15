@@ -13,7 +13,7 @@ import matplotlib.colors as mplcolors
 class Catalog():
   def __init__(self, books='books.tsv'):
     #read ID and title of books from file
-    lines = open(books).read().decode('iso-8859-1').split('\n') 
+    lines = open(books).read().decode('utf8').split('\n') 
     self.books = dict([l.strip().split('\t') for l in lines]) 
     #collect all directories with access information
     self.dirs = glob.glob('webreport_langsci-press.org_catalog_20[0-9][0-9]_[01][0-9]')
@@ -287,11 +287,11 @@ if __name__=='__main__':
   c = Catalog()
   print "country plot"
   c.plotCountries(threshold=13)
-  #print 30*'-'
-  #print "global plot"
-  #c.matplotcumulative(fontsizetotal=7) 
-  #print 30*'-'
-  #print "individual plots"
-  #for b in c.books: 
-    #c.matplotcumulative(ID=b, legend=False)
+  print 30*'-'
+  print "global plot"
+  c.matplotcumulative(fontsizetotal=7) 
+  print 30*'-'
+  print "individual plots"
+  for b in c.books: 
+    c.matplotcumulative(ID=b, legend=False)
 	
