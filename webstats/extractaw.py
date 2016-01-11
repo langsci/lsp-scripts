@@ -14,6 +14,7 @@ class Catalog():
   def __init__(self, books='books.tsv'):
     #read ID and title of books from file
     lines = open(books).read().decode('utf8').split('\n') 
+    #put ID as key and title as value in dictionary
     self.books = dict([l.strip().split('\t') for l in lines]) 
     #collect all directories with access information
     self.dirs = glob.glob('webreport_langsci-press.org_catalog_20[0-9][0-9]_[01][0-9]')
@@ -22,39 +23,40 @@ class Catalog():
     self.countrystats = dict([(d[-7:],CountryStats(os.path.join(d,'awstats.langsci-press.org.alldomains.html')).getCountries()) for d in self.dirs]) 
     #print self.countrystats
   
-  def plotall(self): 
-    for month in self.monthstats: 
-      for book in self.monthstats[month]:
-	self.plot(book, self.monthstats[month][book]) 
+  #def plotall(self): 
+    #for month in self.monthstats: 
+      #for book in self.monthstats[month]:
+	#self.plot(book, self.monthstats[month][book]) 
 	
   def plotaggregate(self):
     """ compute totals for books and print out """
     
-    d = {}    
+    aggregationdictionary = {}    
     for month in self.monthstats: 
       for book in self.monthstats[month]:
-	try:
-	  d[book] += self.monthstats[month][book]
-	except KeyError:
-	  d[book] = self.monthstats[month][book]
-    for book in d:
-	self.plot(book, d[book])
-	
+        try:
+          aggregationdictionary[book] += self.monthstats[month][book]
+        except KeyError:
+          aggregationdictionary[book] = self.monthstats[month][book]
+    for book in aggregationdictionary:
+      self.plot(book, aggregationdictionary[book])
+
   def plotcumulative(self):
     """ compute totals for books per month and print out """
     
-    d = {}
+    aggregationdictionary = {}
     for month in sorted(self.monthstats):
       print ''
       print month
       print 30*'='
       for book in sorted(self.monthstats[month]):
-	try:
-	  d[book] += self.monthstats[month][book]
-	except KeyError:
-	  d[book] = self.monthstats[month][book]
-	self.plot(book, d[book]) 
-	
+        try:
+          aggregationdictionary[book] += self.monthstats[month][book]
+        except KeyError:
+          aggregationdictionary[book] = self.monthstats[month][book]
+        self.plot(book, aggregationdictionary[book]) 
+
+
   def plot(self,book,hits):
     """print to standard out"""
     
@@ -137,19 +139,18 @@ class Catalog():
     for plot in sorted(plots, key=lambda k: k[1][-2],reverse=True): 
       #print plot
       if plot[1][-2]<30: #make sure no test or bogus data are displayed
-	continue
+        continue
       #print labels
       if ID!=False:
-	n = 0	
-	for t in y:
-	  if t==None:
-	    n += 1
-	plot[0] = plot[0][n-1:]
-	plot[1] = plot[1][n-1:]
-	labels = labels[n:] 
+        n = 0	
+        for t in y:
+          if t==None:
+            n += 1
+        plot[0] = plot[0][n-1:]
+        plot[1] = plot[1][n-1:]
+        labels = labels[n:] 
       #plot line
-      ax.plot(plot[0],plot[1] ,color=plot[2],linewidth=1.5)
-      #ax.plot((1,2,3),(4,5,6) ,color=plot[2],linewidth=1.5)
+      ax.plot(plot[0],plot[1] ,color=plot[2],linewidth=1.5) 
       #plot marks
       ax.plot(plot[0],plot[1],plot[3],color=plot[2],label=plot[4]) 
       ax.text(len(origlabels)-1, plot[1][-2], '  %s'%plot[1][-2], fontsize=fontsizetotal) 
@@ -171,23 +172,33 @@ class Catalog():
       plt.savefig('cumulativeall.png')
    
   def plotCountries(self,threshold=12):
-    d = {}
-    for m in self.countrystats:
-      md = self.countrystats[m]
-      for c in md:
-	try:
-	  d[c] += int(md[c].replace(',',''))
-	except KeyError:
-	  d[c] = int(md[c].replace(',',''))
-	      
-    for k in d:
-      print k, d[k]
-    l = [(k,d[k]) for k in d]        
-    l.sort(key=lambda x: x[1], reverse=True) 
-    values = [t[1] for t in l][:threshold]+[sum([t[1] for t in l][threshold:])]  
-    labels = ['%s: %s'%t for t in l][:threshold]+['Other:%s'%values[-1]]
-    for i in range(threshold+1,len(labels)):
-      labels[i]=''
+    """
+    Produce a pie chart of downloads per country.
+    $threshold countries will be named, the rest
+    will be aggregated as "other"
+    """
+    
+    aggregationdictionary = {}
+    for month in self.countrystats:
+      monthdictionary = self.countrystats[month]
+      for country in monthdictionary:
+        try:
+          aggregationdictionary[country] += int(monthdictionary[country].replace(',',''))
+        except KeyError:
+          aggregationdictionary[country] = int(monthdictionary[country].replace(',',''))
+          
+    for k in aggregationdictionary:
+      print k, aggregationdictionary[k]
+    #get list of countries and downloads
+    list_ = [(k,aggregationdictionary[k]) for k in aggregationdictionary]        
+    #sort list by number of downloads
+    list_.sort(key=lambda x: x[1], reverse=True) 
+    #compute values for named countries and "other"
+    values = [t[1] for t in list_][:threshold]+[sum([t[1] for t in list_][threshold:])]  
+    #set labels for named countries and "other"
+    labels = ['%s: %s'%t for t in list_][:threshold]+['Other:%s'%values[-1]]
+    #for i in range(threshold+1,len(labels)):
+      #labels[i]=''
     print labels, values
     cmap = plt.get_cmap('Paired')
     colors = [cmap(i) for i in np.linspace(0, 1, threshold+1)]
@@ -214,17 +225,18 @@ class Stats():
     """
     
     self.hits = dict(
-		      [
-			(
-			  #locate key
-			  tr.findAll('td')[0].text,
-			  #remove thousands separator and convert value to int
-			  int(tr.findAll('td')[1].text.replace(',',''))
-			) for tr in BeautifulSoup.BeautifulSoup(open(f))\
-				  .find('table',attrs={'class':'aws_data'})\
-				  .findAll('tr')[1:]
-		      ]
-		  )    
+                      [
+                        (
+                          #locate key
+                          tr.findAll('td')[0].text,
+                          #remove thousands separator and convert value to int
+                          int(tr.findAll('td')[1].text.replace(',',''))
+                        ) 
+                        for tr in BeautifulSoup.BeautifulSoup(open(f))\
+                                              .find('table',attrs={'class':'aws_data'})\
+                                              .findAll('tr')[1:]
+                      ]
+                  )    
 
 
     
@@ -233,21 +245,21 @@ class Stats():
     analyze the access data and aggregate stats for books across publication formats
     """
     
-    d = {}
+    aggregationdictionary = {}
     for k in self.hits:
       if 'view' in k: #ignore /download/, which is used for files other than pdf
-	try:
-	  #extract ID
-	  i = int(re.search('view/([0-9]+)',k).groups()[0])
-	except AttributeError:
-	  print "no valid book key in %s" %k
-	  continue
-	try:
-	  #accumulate figures for the various publication formats
-	  d[i] += self.hits[k]
-	except KeyError:
-	  d[i] = self.hits[k]
-    return d
+        try:
+          #extract ID
+          i = int(re.search('view/([0-9]+)',k).groups()[0])
+        except AttributeError:
+          print "no valid book key in %s" %k
+          continue
+      try:
+        #accumulate figures for the various publication formats
+        aggregationdictionary[i] += self.hits[k]
+      except KeyError:
+        aggregationdictionary[i] = self.hits[k]
+    return aggregationdictionary
     
         
   def getCountries(self):
@@ -255,14 +267,14 @@ class Stats():
     analyze the access data and aggregate stats for countries
     """
     
-    d = {}
+    aggregationdictionary = {}
     for k in self.hits: 
-	try:
-	  #accumulate figures for the various publication formats
-	  d[k] += self.hits[k]
-	except KeyError:
-	  d[k] = self.hits[k] 
-    return d
+      try:
+        #accumulate figures for the various publication formats
+        aggregationdictionary[k] += self.hits[k]
+      except KeyError:
+        aggregationdictionary[k] = self.hits[k] 
+    return aggregationdictionary
    
 class CountryStats(Stats):
   def __init__(self,f):
@@ -271,18 +283,20 @@ class CountryStats(Stats):
     create a dictionary mapping urls to download figures
     """		  
     self.hits = dict(
-		      [
-			(
-			  #locate key
-			  tr.findAll('td')[2].text,
-			  #remove thousands separator and convert value to int
-			  tr.findAll('td')[4].text
-			) for tr in BeautifulSoup.BeautifulSoup(open(f))\
-				  .find('table',attrs={'class':'aws_data'})\
-				  .findAll('tr')[1:]
-		      ]
-		  )  
-		  
+                    [
+                      (
+                        #locate key
+                        tr.findAll('td')[2].text,
+                        #remove thousands separator and convert value to int
+                        tr.findAll('td')[4].text
+                      ) 
+                      for tr in BeautifulSoup.BeautifulSoup(open(f))\
+                                              .find('table',attrs={'class':'aws_data'})\
+                                              .findAll('tr')[1:]
+                    ]
+                    )  
+
+                    
 if __name__=='__main__':
   c = Catalog()
   print "country plot"
@@ -294,4 +308,4 @@ if __name__=='__main__':
   print "individual plots"
   for b in c.books: 
     c.matplotcumulative(ID=b, legend=False)
-	
+    
