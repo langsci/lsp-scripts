@@ -1,0 +1,908 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta name="generator" content="AWStats 7.4 (build 20150714) from config file awstats.langsci-press.org.conf (http://www.awstats.org)">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="description" content="Awstats - Advanced Web Statistics for langsci-press.org (2016-02) - plugin_geoip_city_maxmind">
+<title>Statistics for langsci-press.org (2016-02) - plugin_geoip_city_maxmind</title>
+<style type="text/css">
+body { font: 11px verdana, arial, helvetica, sans-serif; background-color: #FFFFFF; margin-top: 0; margin-bottom: 0; }
+.aws_bodyl  { }
+.aws_border { border-collapse: collapse; background-color: #CCCCDD; padding: 1px 1px 1px 1px; margin-top: 0px; margin-bottom: 0px; }
+.aws_title  { font: 13px verdana, arial, helvetica, sans-serif; font-weight: bold; background-color: #CCCCDD; text-align: center; margin-top: 0; margin-bottom: 0; padding: 1px 1px 1px 1px; color: #000000; }
+.aws_blank  { font: 13px verdana, arial, helvetica, sans-serif; background-color: #FFFFFF; text-align: center; margin-bottom: 0; padding: 1px 1px 1px 1px; }
+.aws_data {
+	background-color: #FFFFFF;
+	border-top-width: 1px;   
+	border-left-width: 0px;  
+	border-right-width: 0px; 
+	border-bottom-width: 0px;
+}
+.aws_formfield { font: 13px verdana, arial, helvetica; }
+.aws_button {
+	font-family: arial,verdana,helvetica, sans-serif;
+	font-size: 12px;
+	border: 1px solid #ccd7e0;
+	background-image : url(./icon/other/button.gif);
+}
+th		{ border-color: #ECECEC; border-left-width: 0px; border-right-width: 1px; border-top-width: 0px; border-bottom-width: 1px; padding: 1px 2px 1px 1px; font: 11px verdana, arial, helvetica, sans-serif; text-align:center; color: #000000; }
+th.aws	{ border-color: #ECECEC; border-left-width: 0px; border-right-width: 1px; border-top-width: 0px; border-bottom-width: 1px; padding: 1px 2px 1px 1px; font-size: 13px; font-weight: bold; }
+td		{ border-color: #ECECEC; border-left-width: 0px; border-right-width: 1px; border-top-width: 0px; border-bottom-width: 1px; font: 11px verdana, arial, helvetica, sans-serif; text-align:center; color: #000000; }
+td.aws	{ border-color: #ECECEC; border-left-width: 0px; border-right-width: 1px; border-top-width: 0px; border-bottom-width: 1px; font: 11px verdana, arial, helvetica, sans-serif; text-align:left; color: #000000; padding: 0px;}
+td.awsm	{ border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; font: 11px verdana, arial, helvetica, sans-serif; text-align:left; color: #000000; padding: 0px; }
+b { font-weight: bold; }
+a { font: 11px verdana, arial, helvetica, sans-serif; }
+a:link    { color: #0011BB; text-decoration: none; }
+a:visited { color: #0011BB; text-decoration: none; }
+a:hover   { color: #605040; text-decoration: underline; }
+.currentday { font-weight: bold; }
+div { font: 12px 'Arial','Verdana','Helvetica', sans-serif; text-align: justify; }
+.CTooltip { position:absolute; top: 0px; left: 0px; z-index: 2; width: 380px; visibility:hidden; font: 8pt 'MS Comic Sans','Arial',sans-serif; background-color: #FFFFE6; padding: 8px; border: 1px solid black; }
+</style>
+</head>
+
+<body style="margin-top: 0px">
+<a name="top"></a>
+
+<table class='aws_border' border='0' cellpadding='2' cellspacing='0' width='100%'><tr><td class='aws_title' width='100%'><br>LOGFILE STATISTICS<br>(filtered: /catalog/view, /catalog/download)</td></tr></table>
+
+<div class="CTooltip" id="tt1">
+A new visits is defined as each new <b>incoming visitor</b> (viewing or browsing a page) who was not connected to your site during last <b>60 mn</b>.
+</div>
+<div class="CTooltip" id="tt2">
+Number of client hosts (<b>IP address</b>) who came to visit the site (and who viewed at least one <b>page</b>).<br />
+This data refers to the number of <b>different physical persons</b> who had reached the site.
+</div>
+<div class="CTooltip" id="tt3">
+Number of times a <b>page</b> of the site is <b>viewed</b> (Sum for all visitors for all visits).<br />
+This piece of data differs from "hits" in that it counts only HTML pages as oppose to images and other files.
+</div>
+<div class="CTooltip" id="tt4">
+Number of times a <b>page, image, file</b> of the site is <b>viewed</b> or <b>downloaded</b> by someone.<br />
+This piece of data is provided as a reference only, since the number of "pages" viewed is often prefered for marketing purposes.
+</div>
+<div class="CTooltip" id="tt5">
+This piece of information refers to the amount of data downloaded by all <b>pages</b>, <b>images</b> and <b>files</b> within your site.<br />
+Units are in KB, MB or GB (KiloBytes, MegaBytes or GigaBytes)
+</div>
+<div class="CTooltip" id="tt13">
+Awstats recognizes each access to your site after a <b>search</b> from the <b>310 most popular Internet Search Engines and Directories</b> (such as Yahoo, Altavista, Lycos, Google, Voila, etc...).
+</div>
+<div class="CTooltip" id="tt14">
+List of all <b>external pages</b> which were used to link (and enter) to your site (Only the <b>10</b> most often used external pages are shown).
+Links used by the results of the search engines are excluded here because they have already been included on the previous line within this table.
+</div>
+<div class="CTooltip" id="tt15">
+This table shows the list of the most frequent <b>keyphrases or keywords</b> used to find your site from Internet Search Engines and Directories.
+(Keywords from the <b>310</b> most popular Search Engines and Directories are recognized by Awstats, such as Yahoo, Altavista, Lycos, Google, Voila, etc...).<br />
+Note that total number of searches for keywords might be greater than total number of searches for keyphrases (real number of searches) because when 2 keywords were used on same search, search is counted twice for keywords (once for each word).
+</div>
+<div class="CTooltip" id="tt16">
+Robots (sometimes refer to Spiders) are <b>automatic computer visitors</b> used by many search engines that scan your web site to index it and rank it, collect statistics on Internet Web sites and/or see if your site is still online.<br />
+Awstats is able to recognize up to <b>843</b> robots.
+</div>
+<div class="CTooltip" id="tt17">
+All time related statistics are based on server time.
+</div>
+<div class="CTooltip" id="tt18">
+Here, reported data are: <b>average values</b> (calculated from all data between the first and last visit in analyzed range).
+</div>
+<div class="CTooltip" id="tt19">
+Here, reported data are: <b>cumulative sums</b> (calculated from all data between the first and last visit in analyzed range).
+</div>
+<div class="CTooltip" id="tt20">
+Some <b>Visits durations</b> are 'unknown' because they can't always be calculated. This is the major reason for this:<br />
+- Visit was not finished when 'update' occured.<br />
+- Visit started the last hour (after 23:00) of the last day of a month (A technical reason prevents Awstats from calculating duration of such sessions)
+</div>
+<div class="CTooltip" id="tt21">
+Worms are <b>automatic computer visitors</b> that are in fact external servers, infected by a virus, that try
+to make particular hits on your server to infect it. In most cases, such worms exploit some bugs of not up to date
+or commercial servers. If your system is not the <b>sensitive target</b> of the worm, you can simply ignore those hits.<br />
+There is very few 'server worms' in the world but they are very active at some times.
+Awstats is able to recognize <b>0</b> known worm's signatures (nimda,code red,...).
+</div>
+
+<div class="CTooltip" id="tt201">No description for this error.</div>
+<div class="CTooltip" id="tt202">Request was understood by server but will be processed later.</div>
+<div class="CTooltip" id="tt204">Server has processed the request but there is no document to send.</div>
+<div class="CTooltip" id="tt206">Partial content.</div>
+<div class="CTooltip" id="tt301">Requested document was moved and is now at another address given in answer.</div>
+<div class="CTooltip" id="tt302">No description for this error.</div>
+<div class="CTooltip" id="tt400">Syntax error, server didn't understand request.</div>
+<div class="CTooltip" id="tt401">Tried to reach an <b>URL where a login/password pair was required</b>.<br />A high number within this item could mean that someone (such as a hacker) is attempting to crack, or enter into your site (hoping to enter a secured area by trying different login/password pairs, for instance).</div>
+<div class="CTooltip" id="tt403">Tried to reach an <b>URL not configured to be reachable, even with an login/password pair</b> (for example, an URL within a directory not defined as "browsable".).</div>
+<div class="CTooltip" id="tt404">Tried to reach a <b>non existing URL</b>. This error often means that there is an invalid link somewhere in your site or that a visitor mistyped a certain URL.</div>
+<div class="CTooltip" id="tt408">Server has taken <b>too much time</b> to respond to a request. This error frequently involves either a slow CGI script which the server was required to kill or an extremely congested web server.</div>
+<div class="CTooltip" id="tt500">Internal error. This error is often caused by a CGI program that had finished abnormally (coredump for example).</div>
+<div class="CTooltip" id="tt501">Unknown requested action.</div>
+<div class="CTooltip" id="tt502">Code returned by a HTTP server that works as a proxy or gateway when a real, targeted server doesn't answer successfully to the client's request.</div>
+<div class="CTooltip" id="tt503">Internal server error.</div>
+<div class="CTooltip" id="tt504">Gateway Time-out.</div>
+<div class="CTooltip" id="tt505">HTTP Version Not Supported.</div>
+
+<script type="text/javascript">
+function ShowTip(fArg)
+{
+	var tooltipOBJ = (document.getElementById) ? document.getElementById('tt' + fArg) : eval("document.all['tt" + fArg + "']");
+	if (tooltipOBJ != null) {
+		var tooltipLft = (document.body.offsetWidth?document.body.offsetWidth:document.body.style.pixelWidth) - (tooltipOBJ.offsetWidth?tooltipOBJ.offsetWidth:(tooltipOBJ.style.pixelWidth?tooltipOBJ.style.pixelWidth:380)) - 30;
+		var tooltipTop = 10;
+		if (navigator.appName == 'Netscape') {
+			tooltipTop = (document.body.scrollTop>=0?document.body.scrollTop+10:event.clientY+10);
+ 			tooltipOBJ.style.top = tooltipTop+"px";
+			tooltipOBJ.style.left = tooltipLft+"px";
+		}
+		else {
+			tooltipTop = (document.body.scrollTop>=0?document.body.scrollTop+10:event.clientY+10);
+			tooltipTop = (document.body.scrollTop>=0?document.body.scrollTop+10:event.clientY+10);
+			if ((event.clientX > tooltipLft) && (event.clientY < (tooltipOBJ.scrollHeight?tooltipOBJ.scrollHeight:tooltipOBJ.style.pixelHeight) + 10)) {
+				tooltipTop = (document.body.scrollTop?document.body.scrollTop:document.body.offsetTop) + event.clientY + 20;
+			}
+			tooltipOBJ.style.left = tooltipLft;
+			tooltipOBJ.style.top = tooltipTop;
+		}
+		tooltipOBJ.style.visibility = "visible";
+	}
+}
+function HideTip(fArg)
+{
+	var tooltipOBJ = (document.getElementById) ? document.getElementById('tt' + fArg) : eval("document.all['tt" + fArg + "']");
+	if (tooltipOBJ != null) {
+		tooltipOBJ.style.visibility = "hidden";
+	}
+}
+</script>
+
+<a name="menu">&nbsp;</a>
+<form name="FormDateFilter" action="C:\data\Programme\AWStats\wwwroot\cgi-bin/awstats.pl?config=langsci-press.org&amp;staticlinks&amp;output=plugin_geoip_city_maxmind" style="padding: 0px 0px 20px 0px; margin-top: 0">
+<table class="aws_border" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tr><td>
+<table class="aws_data sortable" border="0" cellpadding="1" cellspacing="0" width="100%">
+<tr><td class="aws" valign="middle"><b>Statistics for:</b>&nbsp;</td><td class="aws" valign="middle"><span style="font-size: 14px;">langsci-press.org</span></td><td align="right" rowspan="3"><a href="http://www.fu-berlin.de" target="awstatshome"><img src="./icon/other/fu_logo.gif" border="0" /></a></td></tr>
+<tr valign="middle"><td class="aws" valign="middle" width="150"><b>Last Update:</b>&nbsp;</td><td class="aws" valign="middle"><span style="font-size: 12px;">09 Mar 2016 - 02:27</span></td></tr>
+<tr><td class="aws" valign="middle"><b>Reported period:</b></td><td class="aws" valign="middle"><span style="font-size: 14px;">Month Feb 2016</span></td></tr>
+</table>
+</td></tr></table>
+</form><br />
+
+<table>
+<tr><td class="aws"><a href="javascript:parent.window.close();">Close window</a></td></tr>
+</table>
+
+<a name="plugin_geoip_city_maxmind">&nbsp;</a><br /><table class="aws_border sortable" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tr><td class="aws_title" width="70%" onmouseover="ShowTip(19);" onmouseout="HideTip(19);">GeoIP Cities </td><td class="aws_blank">&nbsp;</td></tr>
+<tr><td colspan="2">
+<table class="aws_data" border="1" cellpadding="2" cellspacing="0" width="100%">
+<tr bgcolor="#ECECEC"><th>Countries</th><th>Regions</th><th>Cities: 719</th><th bgcolor="#66DDEE" width="80">Hits</th><th bgcolor="#66DDEE" width="80">Percent</th></tr>
+<tr><td class="aws">China</td><td class="aws">Beijing</td><td class="aws">Beijing</td><td>300</td><td>4.7 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shandong</td><td class="aws">Jinan</td><td>170</td><td>2.6 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Henan</td><td class="aws">Zhengzhou</td><td>150</td><td>2.3 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Berlin</td><td class="aws">Berlin</td><td>105</td><td>1.6 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Guangdong</td><td class="aws">Guangzhou</td><td>99</td><td>1.5 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">&nbsp;</td><td class="aws">Chongqing</td><td>90</td><td>1.4 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Hebei</td><td class="aws">Hebei</td><td>77</td><td>1.2 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Liaoning</td><td class="aws">Shenyang</td><td>76</td><td>1.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shanghai</td><td class="aws">Shanghai</td><td>67</td><td>1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Jilin</td><td class="aws">Changchun</td><td>64</td><td>1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Tianjin</td><td class="aws">Tianjin</td><td>62</td><td>0.9 %</td></tr>
+<tr><td class="aws">Pakistan</td><td class="aws">Islamabad</td><td class="aws">Islamabad</td><td>60</td><td>0.9 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Heilongjiang</td><td class="aws">Harbin</td><td>57</td><td>0.8 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Chongqing</td><td class="aws">Chengdu</td><td>54</td><td>0.8 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shanxi</td><td class="aws">Taiyuan</td><td>51</td><td>0.8 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Hubei</td><td class="aws">Wuhan</td><td>49</td><td>0.7 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Hunan</td><td class="aws">Changsha</td><td>42</td><td>0.6 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Jiangsu</td><td class="aws">Nanjing</td><td>41</td><td>0.6 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Zhejiang</td><td class="aws">Hangzhou</td><td>40</td><td>0.6 %</td></tr>
+<tr><td class="aws">Turkey</td><td class="aws">Ankara</td><td class="aws">Ankara</td><td>33</td><td>0.5 %</td></tr>
+<tr><td class="aws">Pakistan</td><td class="aws">Punjab</td><td class="aws">Lahore</td><td>30</td><td>0.4 %</td></tr>
+<tr><td class="aws">South Korea</td><td class="aws">Seoul-t'ukpyolsi</td><td class="aws">Seoul</td><td>29</td><td>0.4 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Delaware</td><td class="aws">Lewes</td><td>27</td><td>0.4 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Anhui</td><td class="aws">Hefei</td><td>25</td><td>0.3 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shaanxi</td><td class="aws">Xian</td><td>24</td><td>0.3 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">Toronto</td><td>23</td><td>0.3 %</td></tr>
+<tr><td class="aws">Estonia</td><td class="aws">Tartumaa</td><td class="aws">Tartu</td><td>23</td><td>0.3 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Frankfurt am main</td><td>22</td><td>0.3 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Leipzig</td><td>22</td><td>0.3 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Nei Mongol</td><td class="aws">Baotou</td><td>22</td><td>0.3 %</td></tr>
+<tr><td class="aws">Mexico</td><td class="aws">Distrito Federal</td><td class="aws">Mexico</td><td>21</td><td>0.3 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Guangxi</td><td class="aws">Nanning</td><td>20</td><td>0.3 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Zhejiang</td><td class="aws">Jiaxing</td><td>19</td><td>0.2 %</td></tr>
+<tr><td class="aws">Russian Federation</td><td class="aws">Saint Petersburg City</td><td class="aws">Saint petersburg</td><td>18</td><td>0.2 %</td></tr>
+<tr><td class="aws">Indonesia</td><td class="aws">Jakarta Raya</td><td class="aws">Jakarta</td><td>18</td><td>0.2 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Tokyo</td><td class="aws">Tokyo</td><td>18</td><td>0.2 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Ile-de-France</td><td class="aws">Paris</td><td>18</td><td>0.2 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Madrid</td><td class="aws">Madrid</td><td>17</td><td>0.2 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">London, City of</td><td class="aws">London</td><td>17</td><td>0.2 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Utah</td><td class="aws">North salt lake</td><td>17</td><td>0.2 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Munich</td><td>17</td><td>0.2 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Fujian</td><td class="aws">Fuzhou</td><td>16</td><td>0.2 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Australian Capital Territory</td><td class="aws">Canberra</td><td>16</td><td>0.2 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Los angeles</td><td>16</td><td>0.2 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Zurich</td><td class="aws">Zurich</td><td>16</td><td>0.2 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Brussels Hoofdstedelijk Gewest</td><td class="aws">Brussels</td><td>15</td><td>0.2 %</td></tr>
+<tr><td class="aws">Taiwan</td><td class="aws">T'ai-pei</td><td class="aws">Taipei</td><td>15</td><td>0.2 %</td></tr>
+<tr><td class="aws">Afghanistan</td><td class="aws">Kabol</td><td class="aws">Kabul</td><td>15</td><td>0.2 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Quebec</td><td class="aws">Montréal</td><td>15</td><td>0.2 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Quebec</td><td class="aws">Québec</td><td>15</td><td>0.2 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Ohio</td><td class="aws">Columbus</td><td>14</td><td>0.2 %</td></tr>
+<tr><td class="aws">Czech Republic</td><td class="aws">Hlavni Mesto Praha</td><td class="aws">Prague</td><td>13</td><td>0.2 %</td></tr>
+<tr><td class="aws">Singapore</td><td class="aws">&nbsp;</td><td class="aws">Singapore</td><td>13</td><td>0.2 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New York</td><td class="aws">Buffalo</td><td>13</td><td>0.2 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Stockholms Lan</td><td class="aws">Stockholm</td><td>13</td><td>0.2 %</td></tr>
+<tr><td class="aws">Turkey</td><td class="aws">Istanbul</td><td class="aws">Istanbul</td><td>13</td><td>0.2 %</td></tr>
+<tr><td class="aws">Austria</td><td class="aws">Wien</td><td class="aws">Vienna</td><td>13</td><td>0.2 %</td></tr>
+<tr><td class="aws">Norway</td><td class="aws">Troms</td><td class="aws">Tromsø</td><td>12</td><td>0.1 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Maharashtra</td><td class="aws">Mumbai</td><td>12</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Zhejiang</td><td class="aws">Shaoxing</td><td>12</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">District of Columbia</td><td class="aws">Washington</td><td>12</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Gansu</td><td class="aws">Lanzhou</td><td>12</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Fujian</td><td class="aws">Putian</td><td>12</td><td>0.1 %</td></tr>
+<tr><td class="aws">Hong Kong</td><td class="aws">&nbsp;</td><td class="aws">Central district</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Georgia</td><td class="aws">Athens</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Holland</td><td class="aws">Amsterdam</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Yunnan</td><td class="aws">Kunming</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Freiburg</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">Russian Federation</td><td class="aws">Moscow City</td><td class="aws">Moscow</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">Malaysia</td><td class="aws">Wilayah Persekutuan</td><td class="aws">Kuala lumpur</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New York</td><td class="aws">New york</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Alabama</td><td class="aws">Birmingham</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Pais Vasco</td><td class="aws">Galdakao</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">Austria</td><td class="aws">Tirol</td><td class="aws">Innsbruck</td><td>11</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Zhejiang</td><td class="aws">Henan</td><td>10</td><td>0.1 %</td></tr>
+<tr><td class="aws">Czech Republic</td><td class="aws">Liberecky Kraj</td><td class="aws">Liberec</td><td>10</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Jilin</td><td class="aws">Guangdong</td><td>10</td><td>0.1 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Utrecht</td><td class="aws">Utrecht</td><td>10</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Xinjiang</td><td class="aws">Ürümqi</td><td>10</td><td>0.1 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">British Columbia</td><td class="aws">Vancouver</td><td>10</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New Mexico</td><td class="aws">Albuquerque</td><td>10</td><td>0.1 %</td></tr>
+<tr><td class="aws">Malaysia</td><td class="aws">Selangor</td><td class="aws">Subang jaya</td><td>10</td><td>0.1 %</td></tr>
+<tr><td class="aws">Denmark</td><td class="aws">&nbsp;</td><td class="aws">Aarhus</td><td>9</td><td>0.1 %</td></tr>
+<tr><td class="aws">Poland</td><td class="aws">Lubelskie</td><td class="aws">Lublin</td><td>9</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Mountain view</td><td>9</td><td>0.1 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Oost-Vlaanderen</td><td class="aws">Gent</td><td>9</td><td>0.1 %</td></tr>
+<tr><td class="aws">Estonia</td><td class="aws">Harjumaa</td><td class="aws">Tallinn</td><td>9</td><td>0.1 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Oxfordshire</td><td class="aws">Oxford</td><td>9</td><td>0.1 %</td></tr>
+<tr><td class="aws">Brazil</td><td class="aws">Amazonas</td><td class="aws">Manaus</td><td>9</td><td>0.1 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Zuid-Holland</td><td class="aws">Leiden</td><td>9</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Santa barbara</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Liaoning</td><td class="aws">Daqing</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hamburg</td><td class="aws">Hamburg</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Guangdong</td><td class="aws">Shenzhen</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">New Zealand</td><td class="aws">&nbsp;</td><td class="aws">Auckland</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Groningen</td><td class="aws">Groningen</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Oregon</td><td class="aws">Eugene</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Hawaii</td><td class="aws">Honolulu</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Illinois</td><td class="aws">Chicago</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shandong</td><td class="aws">Jining</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">Saudi Arabia</td><td class="aws">Ar Riyad</td><td class="aws">Riyadh</td><td>8</td><td>0.1 %</td></tr>
+<tr><td class="aws">Indonesia</td><td class="aws">Jawa Barat</td><td class="aws">Bekasi</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Greece</td><td class="aws">Attiki</td><td class="aws">Athens</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Köln</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Peru</td><td class="aws">Lima</td><td class="aws">Lima</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Andhra Pradesh</td><td class="aws">Hyderabad</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Latvia</td><td class="aws">Riga</td><td class="aws">Riga</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Ukraine</td><td class="aws">Kyyiv</td><td class="aws">Kiev</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Sicilia</td><td class="aws">Palermo</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Mexico</td><td class="aws">Nuevo Leon</td><td class="aws">Monterrey</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New York</td><td class="aws">Brooklyn</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Costa Rica</td><td class="aws">San Jose</td><td class="aws">San josé</td><td>7</td><td>0.1 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bremen</td><td class="aws">Bremen</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Nürnberg</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">San mateo</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Australian Capital Territory</td><td class="aws">Dunlop</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">Iceland</td><td class="aws">&nbsp;</td><td class="aws">Reykjavík</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">West Virginia</td><td class="aws">Bunker hill</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Skane Lan</td><td class="aws">Lund</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Tokyo</td><td class="aws">Fuchu</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">Turkey</td><td class="aws">Eskisehir</td><td class="aws">Eskisehir</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">Ireland</td><td class="aws">Dublin</td><td class="aws">Dublin</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">Turkey</td><td class="aws">Izmir</td><td class="aws">Izmir</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Fremont</td><td>6</td><td>0 %</td></tr>
+<tr><td class="aws">New Zealand</td><td class="aws">&nbsp;</td><td class="aws">Rotorua</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Guizhou</td><td class="aws">Guiyang</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Pais Vasco</td><td class="aws">Bilbao</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen-Anhalt</td><td class="aws">Halle</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Pennsylvania</td><td class="aws">Philadelphia</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Pasadena</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Arizona</td><td class="aws">Cottonwood</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Emilia-Romagna</td><td class="aws">Modena</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">Ottawa</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">New South Wales</td><td class="aws">Sydney</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Liguria</td><td class="aws">Genova</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Saudi Arabia</td><td class="aws">Makkah</td><td class="aws">Jeddah</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Arizona</td><td class="aws">Tucson</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Poland</td><td class="aws">Mazowieckie</td><td class="aws">Warsaw</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Hungary</td><td class="aws">Budapest</td><td class="aws">Budapest</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Andalucia</td><td class="aws">Sevilla</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Piemonte</td><td class="aws">Turin</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Arizona</td><td class="aws">Phoenix</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Ivory Coast (Cote D'Ivoire)</td><td class="aws">&nbsp;</td><td class="aws">Abidjan</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Pennsylvania</td><td class="aws">Clarks summit</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Suffolk</td><td class="aws">Ipswich</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Connecticut</td><td class="aws">New haven</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Finland</td><td class="aws">Southern Finland</td><td class="aws">Helsinki</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Brabant</td><td class="aws">Oirschot</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Toscana</td><td class="aws">Poggio a caiano</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Karnataka</td><td class="aws">Mysore</td><td>5</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shandong</td><td class="aws">Linyi</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Edinburgh, City of</td><td class="aws">Edinburgh</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Heilongjiang</td><td class="aws">Haerbin</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Marburg</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">South Africa</td><td class="aws">Gauteng</td><td class="aws">Pretoria</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Guangdong</td><td class="aws">Foshan</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Brighton and Hove</td><td class="aws">Brighton</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Fujian</td><td class="aws">Longyan</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Brabant</td><td class="aws">Tilburg</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Toscana</td><td class="aws">Pisa</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">New South Wales</td><td class="aws">Kogarah</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Fujian</td><td class="aws">Quanzhou</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Western Australia</td><td class="aws">Perth</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Morocco</td><td class="aws">&nbsp;</td><td class="aws">Casablanca</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Indonesia</td><td class="aws">Jawa Tengah</td><td class="aws">Pati</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Anhui</td><td class="aws">Suzhou</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Holland</td><td class="aws">Alkmaar</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Alberta</td><td class="aws">Edmonton</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Rhone-Alpes</td><td class="aws">Fontaine</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Brandenburg</td><td class="aws">Potsdam</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Pakistan</td><td class="aws">Punjab</td><td class="aws">Sialkot</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Fujian</td><td class="aws">Zhangzhou</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Cataluna</td><td class="aws">Sabadell</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Santa cruz</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Ningxia</td><td class="aws">Yinchuan</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Philippines</td><td class="aws">Quezon City</td><td class="aws">Quezon city</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Guangdong</td><td class="aws">Yuan</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen-Anhalt</td><td class="aws">Grana</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Fujian</td><td class="aws">Xiamen</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Niedersachsen</td><td class="aws">Göttingen</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Liaoning</td><td class="aws">Dalian</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Illinois</td><td class="aws">Rolling meadows</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Holland</td><td class="aws">Amstelveen</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Chongqing</td><td class="aws">Jiangyou</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shanxi</td><td class="aws">Yuncheng</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Antwerpen</td><td class="aws">Mechelen</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Hong Kong</td><td class="aws">&nbsp;</td><td class="aws">Sham shui po</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Essen</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Chandigarh</td><td class="aws">Chandigarh</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Cupertino</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Zhejiang</td><td class="aws">Huzhou</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Algeria</td><td class="aws">Alger</td><td class="aws">Kouba</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Heidelberg</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">South Africa</td><td class="aws">Western Cape</td><td class="aws">Cape town</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Jilin</td><td class="aws">Jilin</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Austria</td><td class="aws">Steiermark</td><td class="aws">Graz</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Indonesia</td><td class="aws">Jawa Timur</td><td class="aws">Bedoho</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Veneto</td><td class="aws">Venice</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Victoria</td><td class="aws">Melbourne</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Kanagawa</td><td class="aws">Yokohama</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shandong</td><td class="aws">Weifang</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Anhui</td><td class="aws">Bengbu</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Jiangxi</td><td class="aws">Nanchang</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Zhejiang</td><td class="aws">Ningbo</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Israel</td><td class="aws">Tel Aviv</td><td class="aws">Tel aviv</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Guangdong</td><td class="aws">Dongguan</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">Sudbury</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Finland</td><td class="aws">Western Finland</td><td class="aws">Tampere</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Shandong</td><td class="aws">Liaocheng</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Jiangsu</td><td class="aws">Suzhou</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Glasgow City</td><td class="aws">Glasgow</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Delhi</td><td class="aws">New delhi</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Stuttgart</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Liaoning</td><td class="aws">Yixian</td><td>4</td><td>0 %</td></tr>
+<tr><td class="aws">South Africa</td><td class="aws">Gauteng</td><td class="aws">Johannesburg</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Hillingdon</td><td class="aws">Hayes</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Rhone-Alpes</td><td class="aws">Lyon</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Galicia</td><td class="aws">Amés</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Manchester</td><td class="aws">Manchester</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">South Carolina</td><td class="aws">Simpsonville</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Norway</td><td class="aws">Oslo</td><td class="aws">Oslo</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Augsburg</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Konstanz</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Bibertal</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Kronobergs Lan</td><td class="aws">Växjö</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Dormagen</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Nepal</td><td class="aws">&nbsp;</td><td class="aws">Jawalakhel</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Pais Vasco</td><td class="aws">Vitoria-gasteiz</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Pembrokeshire</td><td class="aws">Milford haven</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Assam</td><td class="aws">Tezpur</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lombardia</td><td class="aws">Treviglio</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Hong Kong</td><td class="aws">&nbsp;</td><td class="aws">Hong kong</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Ravensburg</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Barbados</td><td class="aws">Saint George</td><td class="aws">Wildey</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Utrecht</td><td class="aws">Nieuwegein</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Georgia</td><td class="aws">Atlanta</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Niedersachsen</td><td class="aws">Osnabrück</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Berkeley</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Iraq</td><td class="aws">Baghdad</td><td class="aws">Baghdad</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lombardia</td><td class="aws">Lissone</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Cataluna</td><td class="aws">Barcelona</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">San jose</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Bern</td><td class="aws">Bern</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">South lake tahoe</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Ulm</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Nottingham</td><td class="aws">Nottingham</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Wülfrath</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Ile-de-France</td><td class="aws">Issy-les-moulineaux</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Austria</td><td class="aws">Salzburg</td><td class="aws">Salzburg</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Campania</td><td class="aws">Naples</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Arizona</td><td class="aws">Tempe</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Gießen</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Vietnam</td><td class="aws">Dac Lac</td><td class="aws">Hanoi</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Georgia</td><td class="aws">Dushet'is Raioni</td><td class="aws">Tbilisi</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Philippines</td><td class="aws">Cebu</td><td class="aws">Talisay</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Colorado</td><td class="aws">Denver</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Spremberg</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Galicia</td><td class="aws">Vigo</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Minnesota</td><td class="aws">Saint paul</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Bretagne</td><td class="aws">Beuzec-cap-sizun</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Pakistan</td><td class="aws">Punjab</td><td class="aws">Faisalabad</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Delhi</td><td class="aws">Delhi</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Mexico</td><td class="aws">Sonora</td><td class="aws">Hermosillo</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Brazil</td><td class="aws">Para</td><td class="aws">Belém</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Luzern</td><td class="aws">Luzern</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Brabant</td><td class="aws">Oss</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Poland</td><td class="aws">Dolnoslaskie</td><td class="aws">Wroclaw</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Pennsylvania</td><td class="aws">Pittsburgh</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New York</td><td class="aws">Pelham</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lombardia</td><td class="aws">Milan</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Mannheim</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">West Bengal</td><td class="aws">Kolkata</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Cambridgeshire</td><td class="aws">Cambridge</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Croatia</td><td class="aws">Zadarska</td><td class="aws">Zadar</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Kenya</td><td class="aws">Nairobi Area</td><td class="aws">Nairobi</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lazio</td><td class="aws">Rome</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Bretagne</td><td class="aws">Landerneau</td><td>3</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Duisburg</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Russian Federation</td><td class="aws">Chuvash</td><td class="aws">Cheboksary</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Essex</td><td class="aws">Colchester</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Comunidad Valenciana</td><td class="aws">Valencia</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Australian Capital Territory</td><td class="aws">Yarralumla</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Dresden</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">East Riding of Yorkshire</td><td class="aws">Bridlington</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Michigan</td><td class="aws">East lansing</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Turkey</td><td class="aws">Izmir</td><td class="aws">Bogazici</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Northern Territory</td><td class="aws">Darwin</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Schleswig-Holstein</td><td class="aws">Kiel</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New York</td><td class="aws">Valley stream</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Brazil</td><td class="aws">Rio Grande do Sul</td><td class="aws">Porto alegre</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Thailand</td><td class="aws">Chiang Mai</td><td class="aws">Chiang mai</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Tuningen</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Massachusetts</td><td class="aws">Amherst</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Indonesia</td><td class="aws">Jawa Tengah</td><td class="aws">Magelang</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Tübingen</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Czech Republic</td><td class="aws">Zlinsky Kraj</td><td class="aws">Uhersky brod</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Schleswig-Holstein</td><td class="aws">Neumünster</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Minnesota</td><td class="aws">Minneapolis</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Brabant</td><td class="aws">Den bosch</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Wisconsin</td><td class="aws">Racine</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Ile-de-France</td><td class="aws">Fontenay-aux-roses</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Veneto</td><td class="aws">Padua</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Kansas</td><td class="aws">Lawrence</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Maryland</td><td class="aws">College park</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Versmold</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lombardia</td><td class="aws">Lonato</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New Jersey</td><td class="aws">Maplewood</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Rotherham</td><td class="aws">Wales</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Bosnia-Herzegovina</td><td class="aws">Federation of Bosnia and Herzegovina</td><td class="aws">Mostar</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Arizona</td><td class="aws">Mammoth</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New Jersey</td><td class="aws">Matawan</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Slough</td><td class="aws">Slough</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Gelderland</td><td class="aws">Nijmegen</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Uttar Pradesh</td><td class="aws">Lucknow</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Oost-Vlaanderen</td><td class="aws">Stekene</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Virginia</td><td class="aws">Burke</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Zuid-Holland</td><td class="aws">Zoetermeer</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Slovenia</td><td class="aws">Nova Gorica</td><td class="aws">Solkan</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Antwerpen</td><td class="aws">Antwerpen</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Kingston upon Thames</td><td class="aws">Kingston upon thames</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Brazil</td><td class="aws">Sao Paulo</td><td class="aws">Campinas</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Arizona</td><td class="aws">Surprise</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Colorado</td><td class="aws">Boulder</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Niedersachsen</td><td class="aws">Wedemark</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Islas Baleares</td><td class="aws">Palma</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Cataluna</td><td class="aws">Tarragona</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Philippines</td><td class="aws">Cebu City</td><td class="aws">Cebu city</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Chemnitz</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Tharandt</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Bosnia-Herzegovina</td><td class="aws">Federation of Bosnia and Herzegovina</td><td class="aws">Sarajevo</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Norway</td><td class="aws">Akershus</td><td class="aws">Asker</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Kagoshima</td><td class="aws">Kagoshima</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Niigata</td><td class="aws">Niigata</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Leicester</td><td class="aws">Leicester</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Rheinfelden</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">Kingston</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Israel</td><td class="aws">Hefa</td><td class="aws">Haifa</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Andalucia</td><td class="aws">San fernando</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Gelderland</td><td class="aws">Nijkerk</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Romania</td><td class="aws">Suceava</td><td class="aws">Vadu moldovei</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Virginia</td><td class="aws">Leesburg</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Bayreuth</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Texas</td><td class="aws">San antonio</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Nevada</td><td class="aws">Reno</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Indiana</td><td class="aws">Bloomington</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Russian Federation</td><td class="aws">Tatarstan</td><td class="aws">Kazan</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Wisconsin</td><td class="aws">Madison</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Friuli-Venezia Giulia</td><td class="aws">Udine</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Austria</td><td class="aws">Karnten</td><td class="aws">Klagenfurt</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Limburg</td><td class="aws">Maastricht</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Texas</td><td class="aws">Austin</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Indonesia</td><td class="aws">Jawa Timur</td><td class="aws">Magetan</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Texas</td><td class="aws">Houston</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Rhone-Alpes</td><td class="aws">Grenoble</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Offenbach</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Portugal</td><td class="aws">Lisboa</td><td class="aws">Lisbon</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Russian Federation</td><td class="aws">Orel</td><td class="aws">Orël</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Warwickshire</td><td class="aws">Leamington spa</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">South Korea</td><td class="aws">Kyonggi-do</td><td class="aws">Suwon</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Minnesota</td><td class="aws">Rogers</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Denmark</td><td class="aws">&nbsp;</td><td class="aws">Frederiksberg</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Lithuania</td><td class="aws">Vilniaus Apskritis</td><td class="aws">Vilnius</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Franche-Comte</td><td class="aws">Besançon</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Czech Republic</td><td class="aws">Jihomoravsky Kraj</td><td class="aws">Brno</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Finland</td><td class="aws">Eastern Finland</td><td class="aws">Joensuu</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Karlsruhe</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Philippines</td><td class="aws">Cebu City</td><td class="aws">Adlaon</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Morocco</td><td class="aws">&nbsp;</td><td class="aws">Tétouan</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Paderborn</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Algeria</td><td class="aws">Bechar</td><td class="aws">Béchar</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Denmark</td><td class="aws">&nbsp;</td><td class="aws">Beder</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Andalucia</td><td class="aws">Espartinas</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Antwerpen</td><td class="aws">Hoogstraten</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Karnataka</td><td class="aws">Bangalore</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Portugal</td><td class="aws">Braga</td><td class="aws">Fafe</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Extremadura</td><td class="aws">Plasencia</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Pais Vasco</td><td class="aws">Barakaldo</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Portugal</td><td class="aws">Aveiro</td><td class="aws">Aveiro</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Redwood city</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Massachusetts</td><td class="aws">Lynn</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Darmstadt</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">South Carolina</td><td class="aws">Rock hill</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Poland</td><td class="aws">Zachodniopomorskie</td><td class="aws">Slawno</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Singen</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">South Korea</td><td class="aws">Taejon-jikhalsi</td><td class="aws">Daejeon</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Mönchengladbach</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Picardie</td><td class="aws">Amiens</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Nigeria</td><td class="aws">Niger</td><td class="aws">Abuja</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Ludwigsburg</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Mexico</td><td class="aws">Tabasco</td><td class="aws">Comalcalco</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Brazil</td><td class="aws">Sao Paulo</td><td class="aws">São paulo</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Oregon</td><td class="aws">Newberg</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Aichi</td><td class="aws">Nagoya</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">San francisco</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Niedersachsen</td><td class="aws">Jesteburg</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Bonndorf</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Vasterbottens Lan</td><td class="aws">Umeå</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Rheinland-Pfalz</td><td class="aws">Sommerloch</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Basel-Stadt</td><td class="aws">Riehen</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Mexico</td><td class="aws">Jalisco</td><td class="aws">Guadalajara</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Fellbach</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Norway</td><td class="aws">Sor-Trondelag</td><td class="aws">Trondheim</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">China</td><td class="aws">Jiangsu</td><td class="aws">Wuxi</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Croydon</td><td class="aws">Croydon</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Iran</td><td class="aws">Esfahan</td><td class="aws">Tehran</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Rheinland-Pfalz</td><td class="aws">Mainz</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Madrid</td><td class="aws">Talamanca de jarama</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Niedersachsen</td><td class="aws">Verden</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Rheinland-Pfalz</td><td class="aws">Koblenz</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Wisconsin</td><td class="aws">Milwaukee</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Flevoland</td><td class="aws">Dronten</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Philippines</td><td class="aws">Laguna</td><td class="aws">Calamba</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Cyprus</td><td class="aws">Nicosia</td><td class="aws">Nicosia</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Utrecht</td><td class="aws">Zeist</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">British Columbia</td><td class="aws">Victoria</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">South Carolina</td><td class="aws">Florence</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Portugal</td><td class="aws">Porto</td><td class="aws">Maia</td><td>2</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Castilla y Leon</td><td class="aws">Arroyo</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Texas</td><td class="aws">College station</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Israel</td><td class="aws">Tel Aviv</td><td class="aws">Bat yam</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Stadtallendorf</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Bonn</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Regensburg</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Pakistan</td><td class="aws">Punjab</td><td class="aws">Mandi bahauddin</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Piemonte</td><td class="aws">Orbassano</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Galicia</td><td class="aws">A coruña</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Skane Lan</td><td class="aws">Landskrona</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Röhrsdorf</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Ecuador</td><td class="aws">Pichincha</td><td class="aws">Quito</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Triberg</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Skane Lan</td><td class="aws">Malmö</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Piemonte</td><td class="aws">Pino torinese</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Osaka</td><td class="aws">Osaka</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Eching</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">New South Wales</td><td class="aws">Berala</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">Oakville</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Höst</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Vermont</td><td class="aws">Burlington</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Ukraine</td><td class="aws">Mykolayivs'ka Oblast'</td><td class="aws">Nikolaev</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Basel-Landschaft</td><td class="aws">Aesch</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Livermore</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United Arab Emirates</td><td class="aws">Dubay</td><td class="aws">Dubai</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Brabant Wallon</td><td class="aws">Braine-le-château</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">South Africa</td><td class="aws">North-West</td><td class="aws">Potchefstroom</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Emilia-Romagna</td><td class="aws">Bologna</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Overijssel</td><td class="aws">Enschede</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Cataluna</td><td class="aws">Castellví de rosanés</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Hungary</td><td class="aws">Vas</td><td class="aws">Szombathely</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Neuss</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Georgia</td><td class="aws">Dushet'is Raioni</td><td class="aws">Tiflis</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Newry and Mourne</td><td class="aws">Newry</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Michigan</td><td class="aws">Ann arbor</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Alabama</td><td class="aws">Talladega</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Quebec</td><td class="aws">Trois-rivières</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Blekinge Lan</td><td class="aws">Asarum</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Brazil</td><td class="aws">Minas Gerais</td><td class="aws">Belo horizonte</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Centre</td><td class="aws">Saint-pryvé-saint-mesmin</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Hong Kong</td><td class="aws">&nbsp;</td><td class="aws">Tsim sha tsui</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Dudley</td><td class="aws">Stourbridge</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Finland</td><td class="aws">Oulu</td><td class="aws">Oulu</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Castilla y Leon</td><td class="aws">Ciudad-rodrigo</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Portugal</td><td class="aws">Coimbra</td><td class="aws">Coimbra</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Pais Vasco</td><td class="aws">Zarautz</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Gütersloh</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Zuid-Holland</td><td class="aws">Zuid-beijerland</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Idaho</td><td class="aws">Boise</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Victoria</td><td class="aws">Fitzroy</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Denmark</td><td class="aws">&nbsp;</td><td class="aws">Copenhagen</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">Thornhill</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Rheinland-Pfalz</td><td class="aws">Neu-bamberg</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Rhode Island</td><td class="aws">Wakefield</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Virginia</td><td class="aws">Arlington</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Denmark</td><td class="aws">&nbsp;</td><td class="aws">Odense</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Tokyo</td><td class="aws">Nerima</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Birmingham</td><td class="aws">Birmingham</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Brazil</td><td class="aws">Goias</td><td class="aws">Goiânia</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Delaware</td><td class="aws">Wilmington</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Fürth</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Kerala</td><td class="aws">Haripad</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Australian Capital Territory</td><td class="aws">Casey</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">San diego</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Bristol, City of</td><td class="aws">Bristol</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Thailand</td><td class="aws">Ratchaburi</td><td class="aws">Ratchaburi</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Australian Capital Territory</td><td class="aws">Braddon</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Lake forest</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Neumark</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Holland</td><td class="aws">Nieuw-vennep</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">South Africa</td><td class="aws">Free State</td><td class="aws">Bloemfontein</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Cataluna</td><td class="aws">Cornellá de llobregat</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Washington</td><td class="aws">Redmond</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Texas</td><td class="aws">Arlington</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">North Carolina</td><td class="aws">Chapel hill</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Baden-baden</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">San anselmo</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Poland</td><td class="aws">Lodzkie</td><td class="aws">Wola rakowa</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Rodgau</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Pays de la Loire</td><td class="aws">Le pallet</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">North york</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Portugal</td><td class="aws">Porto</td><td class="aws">Porto</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Nevada</td><td class="aws">Las vegas</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">New Brunswick</td><td class="aws">Chatham</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Herborn</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Nepal</td><td class="aws">&nbsp;</td><td class="aws">Lumbini</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Austria</td><td class="aws">Tirol</td><td class="aws">Stumm</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Zuid-Holland</td><td class="aws">Rotterdam</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Basel-Stadt</td><td class="aws">Basel</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">New South Wales</td><td class="aws">Armidale</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Saitama</td><td class="aws">Saitama</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Wuppertal</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Bottrop</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Hungary</td><td class="aws">Pest</td><td class="aws">Pomáz</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Midi-Pyrenees</td><td class="aws">Colomiers</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Andalucia</td><td class="aws">Málaga</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Pennsylvania</td><td class="aws">Erie</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Republic of Serbia</td><td class="aws">&nbsp;</td><td class="aws">Novi sad</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Papua New Guinea</td><td class="aws">Gulf</td><td class="aws">Kerema</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Ohio</td><td class="aws">Richwood</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Colfax</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Czech Republic</td><td class="aws">Zlinsky Kraj</td><td class="aws">Zlin</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Czech Republic</td><td class="aws">Jihomoravsky Kraj</td><td class="aws">Ceska</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Illinois</td><td class="aws">Urbana</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Zwickau</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Zurich</td><td class="aws">Hinteregg</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">British Columbia</td><td class="aws">Abbotsford</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Tanzania</td><td class="aws">Dar es Salaam</td><td class="aws">Dar es salaam</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Michigan</td><td class="aws">Novi</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Burbach</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">El cerrito</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Bayern</td><td class="aws">Wiesau</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Madrid</td><td class="aws">Las rozas</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Torrance</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Kürnbach</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lombardia</td><td class="aws">Calusco d'adda</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lombardia</td><td class="aws">Spirano</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Piemonte</td><td class="aws">Moncalieri</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Nottinghamshire</td><td class="aws">Worksop</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Flevoland</td><td class="aws">Almere</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Russian Federation</td><td class="aws">Kaliningrad</td><td class="aws">Zelenogradsk</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Russian Federation</td><td class="aws">Novosibirsk</td><td class="aws">Novosibirsk</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Oklahoma</td><td class="aws">Stillwater</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Heuchelheim</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Kanagawa</td><td class="aws">Kawasaki</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Nord-Pas-de-Calais</td><td class="aws">Roubaix</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New York</td><td class="aws">Port washington</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Noord-Holland</td><td class="aws">Wormer</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Oxfordshire</td><td class="aws">Kidlington</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Connecticut</td><td class="aws">Hamden</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Gelsenkirchen</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Marche</td><td class="aws">Serrapetrona</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Arizona</td><td class="aws">Chandler</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Languedoc-Roussillon</td><td class="aws">Montpellier</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Virginia</td><td class="aws">Lynchburg</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Brazil</td><td class="aws">Amazonas</td><td class="aws">Boa vista</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Canoga park</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New York</td><td class="aws">Staten island</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Denmark</td><td class="aws">&nbsp;</td><td class="aws">Randers</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">North Carolina</td><td class="aws">Raleigh</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Lebanon</td><td class="aws">Beyrouth</td><td class="aws">Beirut</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Asturias</td><td class="aws">Oviedo</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Aichi</td><td class="aws">Nisshin</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Portugal</td><td class="aws">Madeira</td><td class="aws">Funchal</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">London</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Puglia</td><td class="aws">Taranto</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Reusrath</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Stockholms Lan</td><td class="aws">Älvsjö</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Pennsylvania</td><td class="aws">Allentown</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Liechtenstein</td><td class="aws">Eschen</td><td class="aws">Nendeln</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Ile-de-France</td><td class="aws">Cormeilles-en-parisis</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Geneve</td><td class="aws">Geneva</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Vlaams-Brabant</td><td class="aws">Sint-genesius-rode</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Florida</td><td class="aws">Fort lauderdale</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Kassel</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Cataluna</td><td class="aws">Torredembarra</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Qatar</td><td class="aws">Ad Dawhah</td><td class="aws">Doha</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Leeds</td><td class="aws">Leeds</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Comunidad Valenciana</td><td class="aws">Alicante</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Ethiopia</td><td class="aws">Adis Abeba</td><td class="aws">Addis ababa</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Isle of Anglesey</td><td class="aws">Llanfairpwllgwyngyll</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Argentina</td><td class="aws">Formosa</td><td class="aws">Formosa</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Sheffield</td><td class="aws">Sheffield</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Texas</td><td class="aws">New braunfels</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Philippines</td><td class="aws">Laguna</td><td class="aws">Biñan</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Zuid-Holland</td><td class="aws">Delft</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Switzerland</td><td class="aws">Fribourg</td><td class="aws">Oberschrot</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New Jersey</td><td class="aws">Elmwood park</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Vlaams-Brabant</td><td class="aws">Louvain</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Bulgaria</td><td class="aws">Grad Sofiya</td><td class="aws">Sofia</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Vastra Gotaland</td><td class="aws">Mölndal</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Slovenia</td><td class="aws">Ljubljana</td><td class="aws">Ljubljana</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Nepal</td><td class="aws">&nbsp;</td><td class="aws">Kathmandu</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Shizuoka</td><td class="aws">Shizuoka</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Illinois</td><td class="aws">Wheaton</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Republic of Serbia</td><td class="aws">&nbsp;</td><td class="aws">Beograd</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Poland</td><td class="aws">Wielkopolskie</td><td class="aws">Poznan</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Macau</td><td class="aws">Ilhas</td><td class="aws">Macau</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Orange</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Centre</td><td class="aws">Orléans</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Vastra Gotaland</td><td class="aws">Göteborg</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Ontario</td><td class="aws">Richmond hill</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Pennsylvania</td><td class="aws">Bristol</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Morocco</td><td class="aws">&nbsp;</td><td class="aws">Temara</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Belarus</td><td class="aws">Hrodzyenskaya Voblasts'</td><td class="aws">Grodno</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Murcia</td><td class="aws">Murcia</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Cardiff</td><td class="aws">Cardiff</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Ireland</td><td class="aws">Galway</td><td class="aws">Galway</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Cataluna</td><td class="aws">Reus</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Varmlands Lan</td><td class="aws">Molkom</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Emilia-Romagna</td><td class="aws">Fidenza</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Philippines</td><td class="aws">Manila</td><td class="aws">Pandacan</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Saarland</td><td class="aws">Schwalbach</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Aachen</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Sicilia</td><td class="aws">Chiusa sclafani</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Alberta</td><td class="aws">Calgary</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Provence-Alpes-Cote d'Azur</td><td class="aws">Grasse</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Bad schwalbach</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Connecticut</td><td class="aws">Hartford</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Puerto Rico</td><td class="aws">&nbsp;</td><td class="aws">Guaynabo</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Romania</td><td class="aws">Bucuresti</td><td class="aws">Bucharest</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Iran</td><td class="aws">&nbsp;</td><td class="aws">Mashhad</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Illinois</td><td class="aws">Champaign</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Bulgaria</td><td class="aws">Sofiya</td><td class="aws">Elin pelin</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Puglia</td><td class="aws">San cesario di lecce</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Malaysia</td><td class="aws">Selangor</td><td class="aws">Klang</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Maryland</td><td class="aws">Parkville</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Veneto</td><td class="aws">Treviso</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Norco</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Albany</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">India</td><td class="aws">Andhra Pradesh</td><td class="aws">Chandanagar</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Texas</td><td class="aws">Fort worth</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Nova Scotia</td><td class="aws">Halifax</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Russian Federation</td><td class="aws">Moskva</td><td class="aws">Aprelevka</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Virginia</td><td class="aws">Springfield</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Uppsala Lan</td><td class="aws">Enköping</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Oregon</td><td class="aws">Portland</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Indiana</td><td class="aws">Crown point</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Abruzzi</td><td class="aws">Chieti</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Renfrewshire</td><td class="aws">Paisley</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Illinois</td><td class="aws">Rochelle</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Belgium</td><td class="aws">Oost-Vlaanderen</td><td class="aws">Wetteren</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Lithuania</td><td class="aws">Kauno Apskritis</td><td class="aws">Kauno</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Sachsen</td><td class="aws">Hirschfeld</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Massachusetts</td><td class="aws">Cambridge</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Hungary</td><td class="aws">Szeged</td><td class="aws">Szeged</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Camden</td><td class="aws">Bloomsbury</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">New Jersey</td><td class="aws">Jersey city</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Zuid-Holland</td><td class="aws">Gouda</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lazio</td><td class="aws">Velletri</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lazio</td><td class="aws">Guidonia</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Fukuoka</td><td class="aws">Hakata</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Denmark</td><td class="aws">&nbsp;</td><td class="aws">Rønde</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Calabria</td><td class="aws">Alessándria</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Ibaraki</td><td class="aws">Tsukuba</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Spain</td><td class="aws">Castilla y Leon</td><td class="aws">León</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Croatia</td><td class="aws">Varazdinska</td><td class="aws">Varazdin</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Chile</td><td class="aws">Region Metropolitana</td><td class="aws">Santiago</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Nagano</td><td class="aws">Nagano</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Iowa</td><td class="aws">Newton</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Vastmanlands Lan</td><td class="aws">Västerås</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Surrey</td><td class="aws">Epsom</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Hampshire</td><td class="aws">Fleet</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Swansea</td><td class="aws">Swansea</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Rohnert park</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Quebec</td><td class="aws">Beloeil</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Pays de la Loire</td><td class="aws">Nantes</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Mexico</td><td class="aws">Nuevo Leon</td><td class="aws">Garcia</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Missouri</td><td class="aws">Saint louis</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Ile-de-France</td><td class="aws">Clichy</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Georgia</td><td class="aws">Fitzgerald</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Pays de la Loire</td><td class="aws">Trélazé</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Finland</td><td class="aws">Western Finland</td><td class="aws">Turku</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Brent</td><td class="aws">Wembley</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Nebraska</td><td class="aws">Omaha</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Kyrgyzstan</td><td class="aws">&nbsp;</td><td class="aws">Bishkek</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">Victoria</td><td class="aws">Morwell</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Wipperfürth</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Friuli-Venezia Giulia</td><td class="aws">Monfalcone</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Maryland</td><td class="aws">Silver spring</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Encinitas</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Zülpich</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Alabama</td><td class="aws">Eight mile</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Kentucky</td><td class="aws">Louisville</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Harrow</td><td class="aws">Harrow</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Slovenia</td><td class="aws">Sencur</td><td class="aws">Sencur</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Zeeland</td><td class="aws">Hulst</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Slovak Republic</td><td class="aws">Bratislava</td><td class="aws">Bratislava</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Norway</td><td class="aws">Hordaland</td><td class="aws">Bergen</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Trentino-Alto Adige</td><td class="aws">Bressanone</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Israel</td><td class="aws">HaDarom</td><td class="aws">Ashdod</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Sweden</td><td class="aws">Stockholms Lan</td><td class="aws">Saltsjöbaden</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Thailand</td><td class="aws">Krung Thep</td><td class="aws">Bangkok</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Maryland</td><td class="aws">Rockville</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">France</td><td class="aws">Basse-Normandie</td><td class="aws">La chapelle</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Romania</td><td class="aws">Mures</td><td class="aws">Targu-mures</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Altadena</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Reading</td><td class="aws">Reading</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Florida</td><td class="aws">Orlando</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">California</td><td class="aws">Vallejo</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Great Britain</td><td class="aws">Leicestershire</td><td class="aws">Coalville</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Toscana</td><td class="aws">Florence</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Nordrhein-Westfalen</td><td class="aws">Recklinghausen</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Frankfurt</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Turkey</td><td class="aws">Izmir</td><td class="aws">Buca</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Utrecht</td><td class="aws">Maarn</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Australia</td><td class="aws">New South Wales</td><td class="aws">Stanmore</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Zimbabwe</td><td class="aws">Mashonaland East</td><td class="aws">Harare</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Netherlands</td><td class="aws">Zuid-Holland</td><td class="aws">Den haag</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Japan</td><td class="aws">Hokkaido</td><td class="aws">Sapporo</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Canada</td><td class="aws">Yukon Territory</td><td class="aws">Whitehorse</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Italy</td><td class="aws">Lombardia</td><td class="aws">Barlassina</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Jamaica</td><td class="aws">Saint Andrew</td><td class="aws">Kingston</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Turkey</td><td class="aws">Istanbul</td><td class="aws">Umraniye</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Indonesia</td><td class="aws">Jawa Timur</td><td class="aws">Jatimulyo</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">United States</td><td class="aws">Washington</td><td class="aws">Seattle</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Saudi Arabia</td><td class="aws">Ash Sharqiyah</td><td class="aws">Khobar</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Hungary</td><td class="aws">Debrecen</td><td class="aws">Debrecen</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Ehingen</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Baden-Wurttemberg</td><td class="aws">Sigmaringendorf</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Malaysia</td><td class="aws">Selangor</td><td class="aws">Petaling jaya</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws">Germany</td><td class="aws">Hessen</td><td class="aws">Lauterbach</td><td>1</td><td>0 %</td></tr>
+<tr><td class="aws" colspan="3"><span style="color: #666688">Others/Unknown</span></td><td>2267</td><td>35.5 %</td></tr>
+</table></td></tr></table><br />
+
+<br /><br />
+<span dir="ltr" style="font: 11px verdana, arial, helvetica; color: #000000;"><b>Advanced Web Statistics 7.4 (build 20150714)</b> - <a href="http://www.awstats.org" target="awstatshome">Created by awstats (plugins: geoip_city_maxmind, geoip, tooltips)</a></span><br />
+<br />
+This product includes GeoLite data created by MaxMind, available from <a href='http://www.maxmind.com'>http://www.maxmind.com</a>.
+
+<br />
+</body>
+</html>
