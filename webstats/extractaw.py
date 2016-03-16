@@ -14,8 +14,9 @@ class Catalog():
   def __init__(self, books='books.tsv'):
     #read ID and title of books from file
     lines = open(books).read().decode('utf8').split('\n') 
+    print lines
     #put ID as key and title as value in dictionary
-    self.books = dict([l.strip().split('\t') for l in lines]) 
+    self.books = dict([l.strip().split('\t') for l in lines if l.strip()!='']) 
     #collect all directories with access information
     self.dirs = glob.glob('webreport_langsci-press.org_catalog_20[0-9][0-9]_[01][0-9]')
     #extract access data from all log files
