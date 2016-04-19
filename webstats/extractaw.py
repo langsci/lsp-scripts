@@ -72,7 +72,7 @@ class Catalog():
     """
     
     #sort the keys so we get them in temporal order
-    labels = sorted(self.monthstats.keys())   
+    labels = sorted(self.monthstats.keys())[:12]   
     
     #setup matplot 
     fig = plt.figure()
@@ -171,6 +171,7 @@ class Catalog():
     else:
       plt.savefig('cumulativeall.svg')
       plt.savefig('cumulativeall.png')
+    plt.close(fig)
    
   def plotCountries(self,threshold=12):
     """
