@@ -9,18 +9,81 @@ mpl.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.colors as mplcolors
 
+
+class Book():
+  def __init__(self, ID, title, colors, shapes):
+    seed = hash(ID)
+    self.ID = int(ID)
+    self.title = title 
+    self.downloads = {}
+    #colors and shapes for lines should be identical for 
+    #a book across several graphics, but different for 
+    #different books. Use a hash function to assign colors
+    #and shapes
+    self.color = colors[seed%len(colors)]
+    self.shape = shapes[seed%len(shapes)]
+        
+  
+  def getGraph(self,timeframe=-1):
+    pass
+  
+
+  def getYAggregates(self,labels,threshold):    
+    basis = [self.downloads.get(label,0) for label in labels]
+    aggregate = [sum(basis[0:i+1]) for i,el in enumerate(basis)]
+    aggregate = [(a if a>threshold else 0) for a in aggregate]    
+    return aggregate
+  
+  def zeros2nones(self,a):
+    result = []
+    for i,e in enumerate(a):
+      try:
+        if a[i+1]==0:
+          result.append(None)
+        else:
+          result.append(e)
+      except IndexError:
+          result.append(e)
+    return result
+          
+          
+      
   
 class Catalog():
-  def __init__(self, books='books.tsv'):
+  def __init__(self, booksfile='books.tsv'):
     #read ID and title of books from file
-    lines = open(books).read().decode('utf8').split('\n') 
+    lines = open(booksfile).read().decode('utf8').split('\n') 
     print lines
     #put ID as key and title as value in dictionary
-    self.books = dict([l.strip().split('\t') for l in lines if l.strip()!='']) 
+    #self.books = dict([l.strip().split('\t') for l in lines if l.strip()!='']) 
+    #setup colors and shapes to select from
+    colors = plt.cm.Set1(np.linspace(0, 1, 45)) 
+    #colors = 'bgrcmyk'
+    shapes = 'v^osp*D'    
+    self.books = {} 
+    for l in lines:
+      if l.strip()!='':
+        ID, title = l.strip().split('\t') 
+        ID = int(ID)
+        self.books[ID] = Book(ID, title, colors, shapes)
     #collect all directories with access information
     self.dirs = glob.glob('webreport_langsci-press.org_catalog_20[0-9][0-9]_[01][0-9]')
     #extract access data from all log files
-    self.monthstats = dict([(d[-7:],Stats(os.path.join(d,'awstats.langsci-press.org.urldetail.html')).getBooks()) for d in self.dirs]) 
+    self.monthstats = dict([(d[-7:], Stats(os.path.join(d,'awstats.langsci-press.org.urldetail.html')).getBooks()) for d in self.dirs]) 
+    aggregationdictionary = {}
+    for bID in self.books:
+      aggregationdictionary[int(bID)] = {}   
+    print aggregationdictionary
+    for month in self.monthstats: 
+      for book in self.monthstats[month]:
+        if int(book) in self.books:
+          try:
+            aggregationdictionary[book][month] = self.monthstats[month][book]
+          except KeyError:          
+            aggregationdictionary[book][month] = 0        
+    for bookID in aggregationdictionary:
+      self.books[bookID].downloads = aggregationdictionary[bookID]
+    
     self.countrystats = dict([(d[-7:],CountryStats(os.path.join(d,'awstats.langsci-press.org.alldomains.html')).getCountries()) for d in self.dirs]) 
     #print self.countrystats
   
@@ -28,7 +91,8 @@ class Catalog():
     #for month in self.monthstats: 
       #for book in self.monthstats[month]:
 	#self.plot(book, self.monthstats[month][book]) 
-	
+         
+        
   def plotaggregate(self):
     """ compute totals for books and print out """
     
@@ -63,28 +127,6 @@ class Catalog():
     
     print hits, hits/20*'|', self.books[str(book)]
     
-  def getYAggregates(self,book,labels,threshold):    
-    y = [None for i in range(len(labels))]
-    downloadsuptolastmonth = 0
-    for i,month in enumerate(labels):    
-        downloadsthismonth = 0        
-        try:
-          downloadsthismonth = self.monthstats[month][int(book)]
-        except KeyError: #no downloads
-          pass
-        y[i] = downloadsuptolastmonth+downloadsthismonth  
-        downloadsuptolastmonth = y[i]
-    for i,j in enumerate(y):
-      if i == 0:#avoid IndexError when subtracting
-        continue
-      if y[i]!=None and y[i]<threshold:
-        y[i-1]=None
-    #if total is lower than threshold, do not display at all
-    if y[-1]<threshold:
-      y[-1] = None
-    #reserve space for labels
-    y.append(None)
-    return y
     
   def matplotcumulative(self,ID=False, legend=True, fontsizetotal=15, threshold=99):
     """
@@ -113,39 +155,37 @@ class Catalog():
     ax.xaxis.set_ticks_position('bottom')
     ax.set_ylabel('downloads')
     ax.set_xlabel('months')   
-    #setup colors and shapes to select from
-    colors = plt.cm.Set1(np.linspace(0, 1, 45)) 
-    #colors = 'bgrcmyk'
-    shapes = 'v^osp*D'
     timeframe = 13 #how many months should be displayed?f
     
     #store data to plot here so we can sort before plotting
     plots = []
-    for book in self.books:
-      if ID and book!=str(ID):
+    aggregatedownloads = 0
+    for bookID in self.books:
+      print bookID
+      if ID and bookID!=ID:
 	#print 'skipping', repr(ID), repr(book)
 	continue
-      print book,':',
+      print bookID,':',
       #initialize axes      
       x = range(len(labels)+1)
       #update values for axes
-      y = self.getYAggregates(book,labels,threshold)     
+      y = self.books[bookID].getYAggregates(labels,threshold)     
       print y
-      #colors and shapes for lines should be identical for 
-      #a book across several graphics, but different for 
-      #different books. Use a hash function to assign colors
-      #and shapes
-      seed = hash(book)
-      c = colors[seed%len(colors)]
-      s = shapes[seed%len(shapes)]
       #store plot data for future usage
-      plots.append([x,y,c,s,self.books[book]])       
+      plots.append([x,y,self.books[bookID]])   
+      try:
+        aggregatedownloads +=  y[-2]
+      except TypeError:
+        pass
+    if ID==False:
+      print "total downloads of all books", aggregatedownloads
     #sort plot data according to lowest total downloads
     #Then plot the plots
     n = 0	
+    displaylimit = timeframe
     origlabels = labels
     for plot in sorted(plots, key=lambda k: k[1][-2],reverse=True): 
-      #print plot
+      print plot
       if plot[1][-2]<30: #make sure no test or bogus data are displayed
         continue
       #print labels
@@ -158,17 +198,21 @@ class Catalog():
         plot[1] = plot[1][n-1:]
         labels = labels[n:] 
       #plot line
-      xs = plot[0][-timeframe:]
-      ys = plot[1][-timeframe:]
-      color = plot[2]
-      shape = plot[3]
-      totaldownloads = plot[1][-2]
+      xs = plot[0][-timeframe:] + [None]
+      ys = plot[1][-timeframe:] + [None]
+      color = plot[2].color
+      shape = plot[2].shape
+      totaldownloads = ys[-2]
       ax.plot(xs, ys, color=color, linewidth=1.5) 
       #plot marks
-      ax.plot(xs, ys, shape, color=color, label=plot[4]) 
+      ax.plot(xs, ys, shape, color=color, label=plot[2].title) 
       ax.text(len(origlabels)-1, totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
+      if timeframe > len(xs)-n :
+        displaylimit = len(xs)-n    
+
     #plot x-axis labels
-    plt.xticks(x[-timeframe:][n:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
+    #plt.xticks(x[-timeframe:][n:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
+    #plt.xticks(xs[-displaylimit-1:], [l[-5:].replace('_','/') for l in labels[-displaylimit-1:]], fontsize = 10) 
     #position legend box
     if legend:
       box = ax.get_position()
@@ -314,13 +358,13 @@ class CountryStats(Stats):
                     
 if __name__=='__main__':
   c = Catalog()
-  print "country plot"
-  c.plotCountries(threshold=13)
-  print 30*'-'
-  print "global plot"
+  #print "country plot"
+  #c.plotCountries(threshold=13)
+  #print 30*'-'
+  #print "global plot"
   c.matplotcumulative(fontsizetotal=7) 
-  print 30*'-'
-  print "individual plots"
-  for bookID in c.books: 
-    c.matplotcumulative(ID=bookID, legend=False)
+  #print 30*'-'
+  #print "individual plots"
+  #for bookID in c.books: 
+    #c.matplotcumulative(ID=bookID, legend=False)
     
