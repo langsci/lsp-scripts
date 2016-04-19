@@ -63,6 +63,29 @@ class Catalog():
     
     print hits, hits/20*'|', self.books[str(book)]
     
+  def getYAggregates(self,book,labels,threshold):    
+    y = [None for i in range(len(labels))]
+    downloadsuptolastmonth = 0
+    for i,month in enumerate(labels):    
+        downloadsthismonth = 0        
+        try:
+          downloadsthismonth = self.monthstats[month][int(book)]
+        except KeyError: #no downloads
+          pass
+        y[i] = downloadsuptolastmonth+downloadsthismonth  
+        downloadsuptolastmonth = y[i]
+    for i,j in enumerate(y):
+      if i == 0:#avoid IndexError when subtracting
+        continue
+      if y[i]!=None and y[i]<threshold:
+        y[i-1]=None
+    #if total is lower than threshold, do not display at all
+    if y[-1]<threshold:
+      y[-1] = None
+    #reserve space for labels
+    y.append(None)
+    return y
+    
   def matplotcumulative(self,ID=False, legend=True, fontsizetotal=15, threshold=99):
     """
     produce cumulative graph
@@ -94,6 +117,7 @@ class Catalog():
     colors = plt.cm.Set1(np.linspace(0, 1, 45)) 
     #colors = 'bgrcmyk'
     shapes = 'v^osp*D'
+    timeframe = 13 #how many months should be displayed?
     
     #store data to plot here so we can sort before plotting
     plots = []
@@ -102,29 +126,11 @@ class Catalog():
 	#print 'skipping', repr(ID), repr(book)
 	continue
       print book,':',
-      downloadsuptolastmonth = 0 
       #initialize axes      
       x = range(len(labels)+1)
-      y = [None for i in range(len(labels))]
+      downloadsuptolastmonth = 0 
       #update values for axes
-      for i,month in enumerate(labels):	 
-        downloadsthismonth = 0        
-	try:
-	  downloadsthismonth = self.monthstats[month][int(book)]
-        except KeyError: #no downloads
-          pass
-        y[i] = downloadsuptolastmonth+downloadsthismonth  
-        downloadsuptolastmonth = y[i]
-      for i,j in enumerate(y):
-	if i == 0:#avoid IndexError when subtracting
-	  continue
-	if y[i]!=None and y[i]<threshold:
-	  y[i-1]=None
-      #if total is lower than threshold, do not display at all
-      if y[-1]<threshold:
-	y[-1] = None
-      #reserve space for labels
-      y.append(None)
+      y = self.getYAggregates(book,labels,threshold)     
       print y
       #colors and shapes for lines should be identical for 
       #a book across several graphics, but different for 
@@ -146,18 +152,21 @@ class Catalog():
       #print labels
       if ID!=False: 
         n = 0	
-        for t in y:#calculate number of None fields in array
+        for t in y:#calculate number of None fields and restrict output to non-None values and the preceding value
           if t==None:
             n += 1
         plot[0] = plot[0][n-1:]
         plot[1] = plot[1][n-1:]
         labels = labels[n:] 
       #plot line
-      timeframe = 13
-      ax.plot(plot[0][-timeframe:],plot[1][-timeframe:] ,color=plot[2],linewidth=1.5) 
+      xs = plot[0][-timeframe:]
+      ys = plot[1][-timeframe:]
+      color = plot[2]
+      totaldownloads = plot[1][-2]
+      ax.plot(xs, ys, color=color, linewidth=1.5) 
       #plot marks
-      ax.plot(plot[0][-timeframe:],plot[1][-timeframe:],plot[3],color=plot[2],label=plot[4]) 
-      ax.text(len(origlabels)-1, plot[1][-2], '      %s'%plot[1][-2], fontsize=fontsizetotal) 
+      ax.plot(xs, ys, plot[3], color=color, label=plot[4]) 
+      ax.text(len(origlabels)-1, totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
     #plot x-axis labels
     plt.xticks(x[-timeframe:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
     #position legend box
@@ -312,6 +321,6 @@ if __name__=='__main__':
   c.matplotcumulative(fontsizetotal=7) 
   print 30*'-'
   print "individual plots"
-  #for b in c.books: 
-    #c.matplotcumulative(ID=b, legend=False)
+  for b in c.books: 
+    c.matplotcumulative(ID=b, legend=False)
     
