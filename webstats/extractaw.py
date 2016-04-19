@@ -250,17 +250,18 @@ class Stats():
     aggregationdictionary = {}
     for k in self.hits:
       if 'view' in k: #ignore /download/, which is used for files other than pdf
+        i=0
         try:
           #extract ID
           i = int(re.search('view/([0-9]+)',k).groups()[0])
         except AttributeError:
           print "no valid book key in %s" %k
           continue
-      try:
-        #accumulate figures for the various publication formats
-        aggregationdictionary[i] += self.hits[k]
-      except KeyError:
-        aggregationdictionary[i] = self.hits[k]
+        try:
+          #accumulate figures for the various publication formats
+          aggregationdictionary[i] += self.hits[k]
+        except KeyError:
+          aggregationdictionary[i] = self.hits[k]
     return aggregationdictionary
     
         
