@@ -117,7 +117,7 @@ class Catalog():
     colors = plt.cm.Set1(np.linspace(0, 1, 45)) 
     #colors = 'bgrcmyk'
     shapes = 'v^osp*D'
-    timeframe = 13 #how many months should be displayed?
+    timeframe = 13 #how many months should be displayed?f
     
     #store data to plot here so we can sort before plotting
     plots = []
@@ -128,7 +128,6 @@ class Catalog():
       print book,':',
       #initialize axes      
       x = range(len(labels)+1)
-      downloadsuptolastmonth = 0 
       #update values for axes
       y = self.getYAggregates(book,labels,threshold)     
       print y
@@ -150,8 +149,8 @@ class Catalog():
       if plot[1][-2]<30: #make sure no test or bogus data are displayed
         continue
       #print labels
+      n = 0   
       if ID!=False: 
-        n = 0	
         for t in y:#calculate number of None fields and restrict output to non-None values and the preceding value
           if t==None:
             n += 1
@@ -162,13 +161,14 @@ class Catalog():
       xs = plot[0][-timeframe:]
       ys = plot[1][-timeframe:]
       color = plot[2]
+      shape = plot[3]
       totaldownloads = plot[1][-2]
       ax.plot(xs, ys, color=color, linewidth=1.5) 
       #plot marks
-      ax.plot(xs, ys, plot[3], color=color, label=plot[4]) 
+      ax.plot(xs, ys, shape, color=color, label=plot[4]) 
       ax.text(len(origlabels)-1, totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
     #plot x-axis labels
-    plt.xticks(x[-timeframe:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
+    plt.xticks(x[-timeframe:][n:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
     #position legend box
     if legend:
       box = ax.get_position()
@@ -315,12 +315,12 @@ class CountryStats(Stats):
 if __name__=='__main__':
   c = Catalog()
   print "country plot"
-  #c.plotCountries(threshold=13)
+  c.plotCountries(threshold=13)
   print 30*'-'
   print "global plot"
   c.matplotcumulative(fontsizetotal=7) 
   print 30*'-'
   print "individual plots"
-  for b in c.books: 
-    c.matplotcumulative(ID=b, legend=False)
+  for bookID in c.books: 
+    c.matplotcumulative(ID=bookID, legend=False)
     
