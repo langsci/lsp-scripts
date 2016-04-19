@@ -72,7 +72,7 @@ class Catalog():
     """
     
     #sort the keys so we get them in temporal order
-    labels = sorted(self.monthstats.keys())[:12]   
+    labels = sorted(self.monthstats.keys())[-12:]   
     
     #setup matplot 
     fig = plt.figure()
