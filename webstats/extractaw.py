@@ -72,7 +72,7 @@ class Catalog():
     """
     
     #sort the keys so we get them in temporal order
-    labels = sorted(self.monthstats.keys())[-12:]   
+    labels = sorted(self.monthstats.keys())
     
     #setup matplot 
     fig = plt.figure()
@@ -102,17 +102,19 @@ class Catalog():
 	#print 'skipping', repr(ID), repr(book)
 	continue
       print book,':',
-      tmp = 0 
-      #initialize axes
+      downloadsuptolastmonth = 0 
+      #initialize axes      
       x = range(len(labels)+1)
       y = [None for i in range(len(labels))]
       #update values for axes
       for i,month in enumerate(labels):	 
+        downloadsthismonth = 0        
 	try:
-	  y[i] = tmp+self.monthstats[month][int(book)]
-	  tmp = y[i]
-	except KeyError:#no downloads this month
-	  y[i] = tmp  
+	  downloadsthismonth = self.monthstats[month][int(book)]
+        except KeyError: #no downloads
+          pass
+        y[i] = downloadsuptolastmonth+downloadsthismonth  
+        downloadsuptolastmonth = y[i]
       for i,j in enumerate(y):
 	if i == 0:#avoid IndexError when subtracting
 	  continue
@@ -132,8 +134,8 @@ class Catalog():
       c = colors[seed%len(colors)]
       s = shapes[seed%len(shapes)]
       #store plot data for future usage
-      plots.append([x,y,c,s,self.books[book]]) 
-    #sort plot data according to highest total downloads
+      plots.append([x,y,c,s,self.books[book]])       
+    #sort plot data according to lowest total downloads
     #Then plot the plots
     n = 0	
     origlabels = labels
@@ -142,21 +144,22 @@ class Catalog():
       if plot[1][-2]<30: #make sure no test or bogus data are displayed
         continue
       #print labels
-      if ID!=False:
+      if ID!=False: 
         n = 0	
-        for t in y:
+        for t in y:#calculate number of None fields in array
           if t==None:
             n += 1
         plot[0] = plot[0][n-1:]
         plot[1] = plot[1][n-1:]
         labels = labels[n:] 
       #plot line
-      ax.plot(plot[0],plot[1] ,color=plot[2],linewidth=1.5) 
+      timeframe = 13
+      ax.plot(plot[0][-timeframe:],plot[1][-timeframe:] ,color=plot[2],linewidth=1.5) 
       #plot marks
-      ax.plot(plot[0],plot[1],plot[3],color=plot[2],label=plot[4]) 
-      ax.text(len(origlabels)-1, plot[1][-2], '  %s'%plot[1][-2], fontsize=fontsizetotal) 
+      ax.plot(plot[0][-timeframe:],plot[1][-timeframe:],plot[3],color=plot[2],label=plot[4]) 
+      ax.text(len(origlabels)-1, plot[1][-2], '      %s'%plot[1][-2], fontsize=fontsizetotal) 
     #plot x-axis labels
-    plt.xticks(x[n:], [l[-5:].replace('_','/') for l in labels], fontsize = 10) 
+    plt.xticks(x[-timeframe:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
     #position legend box
     if legend:
       box = ax.get_position()
@@ -303,12 +306,12 @@ class CountryStats(Stats):
 if __name__=='__main__':
   c = Catalog()
   print "country plot"
-  c.plotCountries(threshold=13)
+  #c.plotCountries(threshold=13)
   print 30*'-'
   print "global plot"
   c.matplotcumulative(fontsizetotal=7) 
   print 30*'-'
   print "individual plots"
-  for b in c.books: 
-    c.matplotcumulative(ID=b, legend=False)
+  #for b in c.books: 
+    #c.matplotcumulative(ID=b, legend=False)
     
