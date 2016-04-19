@@ -155,7 +155,7 @@ class Catalog():
     ax.xaxis.set_ticks_position('bottom')
     ax.set_ylabel('downloads')
     ax.set_xlabel('months')   
-    timeframe = 13 #how many months should be displayed?f
+    timeframe = 11 #how many months should be displayed?f
     
     #store data to plot here so we can sort before plotting
     plots = []
@@ -185,7 +185,7 @@ class Catalog():
     displaylimit = timeframe
     origlabels = labels
     for plot in sorted(plots, key=lambda k: k[1][-2],reverse=True): 
-      print plot
+      #print plot
       if plot[1][-2]<30: #make sure no test or bogus data are displayed
         continue
       #print labels
@@ -198,20 +198,20 @@ class Catalog():
         plot[1] = plot[1][n-1:]
         labels = labels[n:] 
       #plot line
-      xs = plot[0][-timeframe:] + [None]
-      ys = plot[1][-timeframe:] + [None]
+      xs = plot[0][-timeframe-1:] + [None]
+      ys = plot[1][-timeframe-1:] + [None]
       color = plot[2].color
       shape = plot[2].shape
       totaldownloads = ys[-2]
       ax.plot(xs, ys, color=color, linewidth=1.5) 
       #plot marks
-      ax.plot(xs, ys, shape, color=color, label=plot[2].title) 
+      ax.plot(xs, ys, shape, color=color, label="%s (%s)" % (plot[2].title, ys[-2])) 
       ax.text(len(origlabels)-1, totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
       if timeframe > len(xs)-n :
         displaylimit = len(xs)-n    
 
     #plot x-axis labels
-    #plt.xticks(x[-timeframe:][n:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
+    plt.xticks(x[-timeframe:][n:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
     #plt.xticks(xs[-displaylimit-1:], [l[-5:].replace('_','/') for l in labels[-displaylimit-1:]], fontsize = 10) 
     #position legend box
     if legend:
