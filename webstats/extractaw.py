@@ -28,11 +28,11 @@ class Book():
     pass
   
 
-  def getYAggregates(self,labels,threshold):    
+  def computeYAggregates(self,labels,threshold):    
     basis = [self.downloads.get(label,0) for label in labels]
     aggregate = [sum(basis[0:i+1]) for i,el in enumerate(basis)]
     aggregate = [(a if a>threshold else 0) for a in aggregate]    
-    return aggregate
+    self.yaggregates =  aggregate
   
   def zeros2nones(self,a):
     result = []
@@ -127,8 +127,20 @@ class Catalog():
     
     print hits, hits/20*'|', self.books[str(book)]
     
+  def setupPlot(self, labels, timeframe):  
+    fig = plt.figure()
+    #use a wide picture
+    fig.set_figwidth(12)
+    #fig.add_subplot(ax)
+     
+    plt.rc('legend',**{'fontsize':9})
+    plt.xticks(range(len(labels)+1)[-timeframe:], [l[-5:].replace('_','/') for l in labels[-timeframe:]], fontsize = 10) 
     
-  def matplotcumulative(self,ID=False, legend=True, fontsizetotal=15, threshold=99):
+    #fig.patch.set_visible(False)
+    #ax.axis('off')
+    return fig, plt
+  
+  def matplotcumulative(self,ID=False, legend=True, fontsizetotal=15, threshold=99, timeframe=13):
     """
     produce cumulative graph
     
@@ -137,26 +149,20 @@ class Catalog():
     """
     
     #sort the keys so we get them in temporal order
-    labels = sorted(self.monthstats.keys())
-    
+    labels = sorted(self.monthstats.keys())    
     #setup matplot 
-    fig = plt.figure()
-    #use a wide picture
-    fig.set_figwidth(12)
+    fig, plt = self.setupPlot(labels,timeframe)
     ax = plt.subplot(111)
-    #fig.add_subplot(ax)
-     
-    plt.rc('legend',**{'fontsize':9}) 
-    #fig.patch.set_visible(False)
-    #ax.axis('off')
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
     ax.set_ylabel('downloads')
     ax.set_xlabel('months')   
-    timeframe = 11 #how many months should be displayed?f
+   
+    timeframe = 13 #how many months should be displayed?f
     
+   
     #store data to plot here so we can sort before plotting
     plots = []
     aggregatedownloads = 0
@@ -167,14 +173,13 @@ class Catalog():
 	continue
       print bookID,':',
       #initialize axes      
-      x = range(len(labels)+1)
       #update values for axes
-      y = self.books[bookID].getYAggregates(labels,threshold)     
-      print y
+      self.books[bookID].computeYAggregates(labels,threshold)     
+      #print y
       #store plot data for future usage
-      plots.append([x,y,self.books[bookID]])   
+      plots.append([self.books[bookID]])   
       try:
-        aggregatedownloads +=  y[-2]
+        aggregatedownloads +=  self.books[bookID].yaggregates[-1]
       except TypeError:
         pass
     if ID==False:
@@ -184,35 +189,33 @@ class Catalog():
     n = 0	
     displaylimit = timeframe
     origlabels = labels
-    for plot in sorted(plots, key=lambda k: k[1][-2],reverse=True): 
+    for bookID in sorted(self.books.keys(), key=lambda k: self.books[k].yaggregates[-1],reverse=True): 
+      book = self.books[bookID]
       #print plot
-      if plot[1][-2]<30: #make sure no test or bogus data are displayed
+      if book.yaggregates[-1]<30: #make sure no test or bogus data are displayed
         continue
       #print labels
-      n = 0   
-      if ID!=False: 
-        for t in y:#calculate number of None fields and restrict output to non-None values and the preceding value
-          if t==None:
-            n += 1
-        plot[0] = plot[0][n-1:]
-        plot[1] = plot[1][n-1:]
-        labels = labels[n:] 
+      #n = 0   
+      #if ID!=False: 
+        #for t in y:#calculate number of None fields and restrict output to non-None values and the preceding value
+          #if t==None:
+            #n += 1
+        #plot[0] = plot[0][n-1:]
+        #plot[1] = plot[1][n-1:]
+        #labels = labels[n:] 
       #plot line
-      xs = plot[0][-timeframe-1:] + [None]
-      ys = plot[1][-timeframe-1:] + [None]
-      color = plot[2].color
-      shape = plot[2].shape
-      totaldownloads = ys[-2]
+      xs = range(len(labels)+1)[-timeframe-1:] + [None]
+      ys = book.yaggregates[-timeframe-1:] + [None]
+      color = book.color
+      shape = book.shape
+      totaldownloads = book.yaggregates[-1]
       ax.plot(xs, ys, color=color, linewidth=1.5) 
       #plot marks
-      ax.plot(xs, ys, shape, color=color, label="%s (%s)" % (plot[2].title, ys[-2])) 
-      ax.text(len(origlabels)-1, totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
+      ax.plot(xs, ys, shape, color=color, label="%s (%s)" % (book.title, ys[-2])) 
+      ax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
       if timeframe > len(xs)-n :
         displaylimit = len(xs)-n    
 
-    #plot x-axis labels
-    plt.xticks(x[-timeframe:][n:], [l[-5:].replace('_','/') for l in labels[-timeframe+1:]], fontsize = 10) 
-    #plt.xticks(xs[-displaylimit-1:], [l[-5:].replace('_','/') for l in labels[-displaylimit-1:]], fontsize = 10) 
     #position legend box
     if legend:
       box = ax.get_position()
