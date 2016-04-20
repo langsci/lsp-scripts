@@ -159,12 +159,10 @@ class Catalog():
     ax.xaxis.set_ticks_position('bottom')
     ax.set_ylabel('downloads')
     ax.set_xlabel('months')   
-   
-    timeframe = 13 #how many months should be displayed?f
+      
+    displaylimit = timeframe
+    origlabels = labels
     
-   
-    #store data to plot here so we can sort before plotting
-    plots = []
     aggregatedownloads = 0
     for bookID in self.books:
       print bookID
@@ -172,23 +170,11 @@ class Catalog():
 	#print 'skipping', repr(ID), repr(book)
 	continue
       print bookID,':',
-      #initialize axes      
-      #update values for axes
       self.books[bookID].computeYAggregates(labels,threshold)     
-      #print y
-      #store plot data for future usage
-      plots.append([self.books[bookID]])   
       try:
         aggregatedownloads +=  self.books[bookID].yaggregates[-1]
-      except TypeError:
+      except TypeError: #no download data
         pass
-    if ID==False:
-      print "total downloads of all books", aggregatedownloads
-    #sort plot data according to lowest total downloads
-    #Then plot the plots
-    n = 0	
-    displaylimit = timeframe
-    origlabels = labels
     for bookID in sorted(self.books.keys(), key=lambda k: self.books[k].yaggregates[-1],reverse=True): 
       book = self.books[bookID]
       #print plot
@@ -227,10 +213,13 @@ class Catalog():
     if ID:
       plt.savefig('%s.svg'%ID)
       plt.savefig('%s.png'%ID)
-    else:
+    else:  
+      print "total downloads of all books", aggregatedownloads
       plt.savefig('cumulativeall.svg')
       plt.savefig('cumulativeall.png')
     plt.close(fig)
+    
+   
    
   def plotCountries(self,threshold=12):
     """
