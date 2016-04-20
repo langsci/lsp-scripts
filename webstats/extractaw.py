@@ -165,7 +165,7 @@ class Catalog():
     origlabels = labels
     
     aggregatedownloads = 0    
-    
+    graphs = 0
     for bookID in self.books:
       self.books[bookID].computeYAggregates(labels, threshold)
       
@@ -175,6 +175,7 @@ class Catalog():
       try:
         totaldownloads = book.yaggregates[-1]
         aggregatedownloads +=  totaldownloads
+        graphs += 1
       except TypeError: #no download data
         pass
       if book.yaggregates[-1]<30: #make sure no test or bogus data are displayed
@@ -185,8 +186,8 @@ class Catalog():
       #shape = book.shape
       ax.plot(xs, ys, color=book.color, linewidth=1.5) 
       #plot marks
-      ax.plot(xs, ys, book.shape, color=book.color, label="%s (%s)" % (book.title[:45], ys[-2])) 
-      ax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
+      ax.plot(xs, ys, book.shape, color=book.color, label="(%s) %s" % (ys[-2], book.title[:45])) 
+      #ax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
       #if timeframe > len(xs)-n :
         #displaylimit = len(xs)-n    
 
@@ -194,7 +195,8 @@ class Catalog():
     if legend:
       box = ax.get_position()
       ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
-      ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
+      stretchfactor=25/graphs
+      ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1,labelspacing=stretchfactor) 
     #else:
       #ax.legend_.remove()
     #save file
@@ -234,7 +236,7 @@ class Catalog():
       bookax.plot(xs, ys, color=book.color, linewidth=1.5) 
       #plot marks
       bookax.plot(xs, ys, book.shape, color=book.color, label="%s" % (ys[-2])) 
-      bookax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal)       
+      bookax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=12)       
       bookplt.savefig('%s.svg'%bookID)
       bookplt.savefig('%s.png'%bookID)
       bookplt.close(fig)    
@@ -370,13 +372,8 @@ class CountryStats(Stats):
                     
 if __name__=='__main__':
   c = Catalog()
-  #print "country plot"
-  #c.plotCountries(threshold=13)
-  #print 30*'-'
-  #print "global plot"
+  print "country plot"
+  c.plotCountries(threshold=13)
+  print 30*'-'
   c.matplotcumulative(fontsizetotal=7) 
-  #print 30*'-'
-  #print "individual plots"
-  #for bookID in c.books: 
-    #c.matplotcumulative(ID=bookID, legend=False)
     
