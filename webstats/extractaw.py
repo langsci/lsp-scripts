@@ -78,49 +78,8 @@ class Catalog():
     for bookID in aggregationdictionary:
       self.books[bookID].downloads = aggregationdictionary[bookID]
     
-    self.countrystats = dict([(d[-7:],CountryStats(os.path.join(d,'awstats.langsci-press.org.alldomains.html')).getCountries()) for d in self.dirs]) 
-    #print self.countrystats
-  
-  #def plotall(self): 
-    #for month in self.monthstats: 
-      #for book in self.monthstats[month]:
-	#self.plot(book, self.monthstats[month][book]) 
-         
+    self.countrystats = dict([(d[-7:],CountryStats(os.path.join(d,'awstats.langsci-press.org.alldomains.html')).getCountries()) for d in self.dirs])   
         
-  def plotaggregate(self):
-    """ compute totals for books and print out """
-    
-    aggregationdictionary = {}    
-    for month in self.monthstats: 
-      for book in self.monthstats[month]:
-        try:
-          aggregationdictionary[book] += self.monthstats[month][book]
-        except KeyError:
-          aggregationdictionary[book] = self.monthstats[month][book]
-    for book in aggregationdictionary:
-      self.plot(book, aggregationdictionary[book])
-
-  def plotcumulative(self):
-    """ compute totals for books per month and print out """
-    
-    aggregationdictionary = {}
-    for month in sorted(self.monthstats):
-      print ''
-      print month
-      print 30*'='
-      for book in sorted(self.monthstats[month]):
-        try:
-          aggregationdictionary[book] += self.monthstats[month][book]
-        except KeyError:
-          aggregationdictionary[book] = self.monthstats[month][book]
-        self.plot(book, aggregationdictionary[book]) 
-
-
-  def plot(self,book,hits):
-    """print to standard out"""
-    
-    print hits, hits/20*'|', self.books[str(book)]
-    
   def setupPlot(self, labels, timeframe):  
     fig = plt.figure()
     #use a wide picture
@@ -140,6 +99,7 @@ class Catalog():
     
     Aggregate cumulative data for time sequence.
     Plot this data with matplotlib.
+    Also plot all individual books
     """
     
     #sort the keys so we get them in temporal order
@@ -154,7 +114,7 @@ class Catalog():
     ax.set_ylabel('downloads')
     ax.set_xlabel('months')   
       
-    displaylimit = timeframe
+    #displaylimit = timeframe
     origlabels = labels
     
     aggregatedownloads = 0    
@@ -175,66 +135,50 @@ class Catalog():
         continue            
       xs = range(len(labels)+1)[-timeframe-1:] + [None]
       ys = book.yaggregates[-timeframe-1:] + [None]
-      #color = book.color
-      #shape = book.shape
+      #plot line
       ax.plot(xs, ys, color=book.color, linewidth=1.5) 
       #plot marks
       ax.plot(xs, ys, book.shape, color=book.color, label="(%s) %s" % (ys[-2], book.title[:45])) 
-      #ax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
-      #if timeframe > len(xs)-n :
-        #displaylimit = len(xs)-n    
-
+      
     #position legend box
     if legend:
       box = ax.get_position()
       ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
       stretchfactor=25/graphs
-      ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1,labelspacing=stretchfactor) 
-    #else:
-      #ax.legend_.remove()
+      ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1,labelspacing=stretchfactor)     
     #save file
     plt.savefig('cumulativeall.svg')
     plt.savefig('cumulativeall.png')
-    plt.close(fig)    
-    print "total downloads of all books:", aggregatedownloads
+    plt.close(fig)   
+    print "plotted cumulative graph"
+    print "total downloads of all books:", aggregatedownloads    
+    print "plotting invididual graphs: "
+    #individual plots
     for bookID in self.books:
       book = self.books[bookID]
       if book.yaggregates[-1]<30: #only generate graphics for books with sizable downloads
         continue      
-      #print labels
-      #n = 0   
-      #if ID!=False: 
-        #for t in y:#calculate number of None fields and restrict output to non-None values and the preceding value
-          #if t==None:
-            #n += 1
-        #plot[0] = plot[0][n-1:]
-        #plot[1] = plot[1][n-1:]
-        #labels = labels[n:] 
-      #plot line
-      bookfig, bookplt = self.setupPlot(labels,timeframe)
-      
+      bookfig, bookplt = self.setupPlot(labels,timeframe)      
       bookax = plt.subplot(111)
       bookax.spines['right'].set_visible(False)
       bookax.spines['top'].set_visible(False)
       bookax.yaxis.set_ticks_position('left')
       bookax.xaxis.set_ticks_position('bottom')
       bookax.set_ylabel('downloads')
-      bookax.set_xlabel('months')   
-        
+      bookax.set_xlabel('months')           
       xs = range(len(labels)+1)[-timeframe-1:] + [None]
       ys = book.yaggregates[-timeframe-1:] + [None]
       totaldownloads = book.yaggregates[-1]
-      #color = book.color
-      #shape = book.shape
+      #plot line
       bookax.plot(xs, ys, color=book.color, linewidth=1.5) 
       #plot marks
       bookax.plot(xs, ys, book.shape, color=book.color, label="%s" % (ys[-2])) 
+      #add number at end of graph
       bookax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=12)       
       bookplt.savefig('%s.svg'%bookID)
       bookplt.savefig('%s.png'%bookID)
       bookplt.close(fig)    
-      print "plotted ", bookID
-   
+      print bookID,   
    
   def plotCountries(self,threshold=12):
     """
@@ -278,10 +222,7 @@ class Catalog():
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
     plt.savefig('countries.png') 
     plt.savefig('countries.svg') 
-	  
-      
-     
-    
+         
 class Stats():
   def __init__(self,f):
     """
@@ -369,5 +310,4 @@ if __name__=='__main__':
   c.plotCountries(threshold=13)
   print 30*'-'  
   print "book plots"
-  c.matplotcumulative(fontsizetotal=7) 
-    
+  c.matplotcumulative(fontsizetotal=7)     
