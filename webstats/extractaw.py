@@ -12,19 +12,12 @@ import matplotlib.colors as mplcolors
 
 class Book():
   def __init__(self, ID, title, colors, shapes):
-    seed = hash(ID)
+    seed = hash(str(ID))
     self.ID = int(ID)
     self.title = title 
     self.downloads = {}
-    #colors and shapes for lines should be identical for 
-    #a book across several graphics, but different for 
-    #different books. Use a hash function to assign colors
-    #and shapes
     self.color = colors[seed%len(colors)]
     self.shape = shapes[seed%len(shapes)]    
-  
-  def getGraph(self,timeframe=-1):
-    pass
   
 
   def computeYAggregates(self,labels,threshold):    
@@ -374,6 +367,7 @@ if __name__=='__main__':
   c = Catalog()
   print "country plot"
   c.plotCountries(threshold=13)
-  print 30*'-'
+  print 30*'-'  
+  print "book plots"
   c.matplotcumulative(fontsizetotal=7) 
     
