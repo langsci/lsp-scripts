@@ -21,8 +21,7 @@ class Book():
     #different books. Use a hash function to assign colors
     #and shapes
     self.color = colors[seed%len(colors)]
-    self.shape = shapes[seed%len(shapes)]
-        
+    self.shape = shapes[seed%len(shapes)]    
   
   def getGraph(self,timeframe=-1):
     pass
@@ -32,7 +31,9 @@ class Book():
     basis = [self.downloads.get(label,0) for label in labels]
     aggregate = [sum(basis[0:i+1]) for i,el in enumerate(basis)]
     aggregate = [(a if a>threshold else 0) for a in aggregate]    
+    aggregate = self.zeros2nones(aggregate)
     self.yaggregates =  aggregate
+    print self.ID, self.yaggregates
   
   def zeros2nones(self,a):
     result = []
@@ -53,7 +54,7 @@ class Catalog():
   def __init__(self, booksfile='books.tsv'):
     #read ID and title of books from file
     lines = open(booksfile).read().decode('utf8').split('\n') 
-    print lines
+    #print lines
     #put ID as key and title as value in dictionary
     #self.books = dict([l.strip().split('\t') for l in lines if l.strip()!='']) 
     #setup colors and shapes to select from
@@ -73,7 +74,7 @@ class Catalog():
     aggregationdictionary = {}
     for bID in self.books:
       aggregationdictionary[int(bID)] = {}   
-    print aggregationdictionary
+    #print aggregationdictionary
     for month in self.monthstats: 
       for book in self.monthstats[month]:
         if int(book) in self.books:
@@ -163,23 +164,48 @@ class Catalog():
     displaylimit = timeframe
     origlabels = labels
     
-    aggregatedownloads = 0
+    aggregatedownloads = 0    
+    
     for bookID in self.books:
-      print bookID
-      if ID and bookID!=ID:
-	#print 'skipping', repr(ID), repr(book)
-	continue
-      print bookID,':',
-      self.books[bookID].computeYAggregates(labels,threshold)     
-      try:
-        aggregatedownloads +=  self.books[bookID].yaggregates[-1]
-      except TypeError: #no download data
-        pass
+      self.books[bookID].computeYAggregates(labels, threshold)
+      
     for bookID in sorted(self.books.keys(), key=lambda k: self.books[k].yaggregates[-1],reverse=True): 
       book = self.books[bookID]
-      #print plot
+      #compute total download data over all books
+      try:
+        totaldownloads = book.yaggregates[-1]
+        aggregatedownloads +=  totaldownloads
+      except TypeError: #no download data
+        pass
       if book.yaggregates[-1]<30: #make sure no test or bogus data are displayed
-        continue
+        continue            
+      xs = range(len(labels)+1)[-timeframe-1:] + [None]
+      ys = book.yaggregates[-timeframe-1:] + [None]
+      #color = book.color
+      #shape = book.shape
+      ax.plot(xs, ys, color=book.color, linewidth=1.5) 
+      #plot marks
+      ax.plot(xs, ys, book.shape, color=book.color, label="%s (%s)" % (book.title[:45], ys[-2])) 
+      ax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
+      #if timeframe > len(xs)-n :
+        #displaylimit = len(xs)-n    
+
+    #position legend box
+    if legend:
+      box = ax.get_position()
+      ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
+      ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
+    #else:
+      #ax.legend_.remove()
+    #save file
+    plt.savefig('cumulativeall.svg')
+    plt.savefig('cumulativeall.png')
+    plt.close(fig)    
+    print "total downloads of all books:", aggregatedownloads
+    for bookID in self.books:
+      book = self.books[bookID]
+      if book.yaggregates[-1]<30: #only generate graphics for books with sizable downloads
+        continue      
       #print labels
       #n = 0   
       #if ID!=False: 
@@ -190,35 +216,29 @@ class Catalog():
         #plot[1] = plot[1][n-1:]
         #labels = labels[n:] 
       #plot line
+      bookfig, bookplt = self.setupPlot(labels,timeframe)
+      
+      bookax = plt.subplot(111)
+      bookax.spines['right'].set_visible(False)
+      bookax.spines['top'].set_visible(False)
+      bookax.yaxis.set_ticks_position('left')
+      bookax.xaxis.set_ticks_position('bottom')
+      bookax.set_ylabel('downloads')
+      bookax.set_xlabel('months')   
+        
       xs = range(len(labels)+1)[-timeframe-1:] + [None]
       ys = book.yaggregates[-timeframe-1:] + [None]
-      color = book.color
-      shape = book.shape
       totaldownloads = book.yaggregates[-1]
-      ax.plot(xs, ys, color=color, linewidth=1.5) 
+      #color = book.color
+      #shape = book.shape
+      bookax.plot(xs, ys, color=book.color, linewidth=1.5) 
       #plot marks
-      ax.plot(xs, ys, shape, color=color, label="%s (%s)" % (book.title, ys[-2])) 
-      ax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal) 
-      if timeframe > len(xs)-n :
-        displaylimit = len(xs)-n    
-
-    #position legend box
-    if legend:
-      box = ax.get_position()
-      ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
-      ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
-    #else:
-      #ax.legend_.remove()
-    #save file
-    if ID:
-      plt.savefig('%s.svg'%ID)
-      plt.savefig('%s.png'%ID)
-    else:  
-      print "total downloads of all books", aggregatedownloads
-      plt.savefig('cumulativeall.svg')
-      plt.savefig('cumulativeall.png')
-    plt.close(fig)
-    
+      bookax.plot(xs, ys, book.shape, color=book.color, label="%s" % (ys[-2])) 
+      bookax.text(len(origlabels), totaldownloads, '      %s'%totaldownloads, fontsize=fontsizetotal)       
+      bookplt.savefig('%s.svg'%bookID)
+      bookplt.savefig('%s.png'%bookID)
+      bookplt.close(fig)    
+      print "plotted ", bookID
    
    
   def plotCountries(self,threshold=12):
