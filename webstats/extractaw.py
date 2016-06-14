@@ -69,10 +69,18 @@ class Catalog():
       aggregationdictionary[int(bID)] = {}   
     #print aggregationdictionary
     for month in self.monthstats: 
+      monthfactor = 1 #correctionfactor for incomplete logs
+      if month == "2016_05": #in May 2016, only 24/31 days were logged
+        monthfactor = 1.3        
+      if month == "2016_06": #in June 2016, only 15/30 days were logged
+        monthfactor = 2      
       for book in self.monthstats[month]:
         if int(book) in self.books:
+          if int(book) == 94 and month == "2015_05": #book 94 was published mid-may, hence the factor is 16/8 and not 31/24
+            monthfactor = 2
           try:
-            aggregationdictionary[book][month] = self.monthstats[month][book]
+            print monthfactor
+            aggregationdictionary[book][month] = int(self.monthstats[month][book]*monthfactor)
           except KeyError:          
             aggregationdictionary[book][month] = 0        
     for bookID in aggregationdictionary:
@@ -190,11 +198,16 @@ class Catalog():
     aggregationdictionary = {}
     for month in self.countrystats:
       monthdictionary = self.countrystats[month]
+      monthfactor = 1 #correctionfactor for incomplete logs
+      if month == "2016_05": #in May 2016, only 24/31 days were logged
+        monthfactor = 1.3        
+      if month == "2016_06": #in June 2016, only 15/30 days were logged
+        monthfactor = 2    
       for country in monthdictionary:
         try:
-          aggregationdictionary[country] += int(monthdictionary[country].replace(',',''))
+          aggregationdictionary[country] += int(int(monthdictionary[country].replace(',',''))*monthfactor)
         except KeyError:
-          aggregationdictionary[country] = int(monthdictionary[country].replace(',',''))
+          aggregationdictionary[country] = int(int(monthdictionary[country].replace(',',''))*monthfactor)
           
     for k in aggregationdictionary:
       print k, aggregationdictionary[k]
