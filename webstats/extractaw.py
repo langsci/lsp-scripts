@@ -76,7 +76,7 @@ class Catalog():
         monthfactor = 2      
       for book in self.monthstats[month]:
         if int(book) in self.books:
-          if int(book) == 94 and month == "2015_05": #book 94 was published mid-may, hence the factor is 16/8 and not 31/24
+          if int(book) == 94 and month == "2016_05": #book 94 was published mid-may, hence the factor is 16/8 and not 31/24
             monthfactor = 2
           try:
             print monthfactor
