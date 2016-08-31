@@ -23,7 +23,7 @@ class Book():
   def computeYAggregates(self,labels,threshold):    
     basis = [self.downloads.get(label,0) for label in labels]
     aggregate = [sum(basis[0:i+1]) for i,el in enumerate(basis)]
-    aggregate = [(a if a>threshold else 0) for a in aggregate]    
+    #aggregate = [(a if a>threshold else 0) for a in aggregate]    
     aggregate = self.zeros2nones(aggregate)
     self.yaggregates =  aggregate
     print self.ID, self.yaggregates
@@ -78,11 +78,12 @@ class Catalog():
         if int(book) in self.books:
           if int(book) == 94 and month == "2016_05": #book 94 was published mid-may, hence the factor is 16/8 and not 31/24
             monthfactor = 2
-          try:
-            print monthfactor
+          try: 
             aggregationdictionary[book][month] = int(self.monthstats[month][book]*monthfactor)
           except KeyError:          
-            aggregationdictionary[book][month] = 0        
+            aggregationdictionary[book][month] = 0     
+    aggregationdictionary[52]["2016_06"] = 48 #logging was off in that month
+    aggregationdictionary[53]["2016_06"] = 84 #logging was off in that month    
     for bookID in aggregationdictionary:
       self.books[bookID].downloads = aggregationdictionary[bookID]
     
