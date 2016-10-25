@@ -8,7 +8,7 @@ import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.colors as mplcolors
-
+import pprint
 
 class Book():
   def __init__(self, ID, title, colors, shapes):
@@ -81,9 +81,18 @@ class Catalog():
           try: 
             aggregationdictionary[book][month] = int(self.monthstats[month][book]*monthfactor)
           except KeyError:          
-            aggregationdictionary[book][month] = 0     
+            aggregationdictionary[book][month] = 0       
+      try:
+        aggregationdictionary[46101][month] = aggregationdictionary[46][month]
+      except KeyError:
+        aggregationdictionary[46101][month] = 0
+      try:
+        aggregationdictionary[46101][month] += aggregationdictionary[101][month]    
+      except KeyError:
+        pass
+      
     aggregationdictionary[52]["2016_06"] = 48 #logging was off in that month
-    aggregationdictionary[53]["2016_06"] = 84 #logging was off in that month    
+    aggregationdictionary[53]["2016_06"] = 84 #logging was off in that month   
     for bookID in aggregationdictionary:
       self.books[bookID].downloads = aggregationdictionary[bookID]
     
