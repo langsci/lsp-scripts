@@ -213,11 +213,11 @@ class Catalog():
         monthfactor = 1.3        
       if month == "2016_06": #in June 2016, only 15/30 days were logged
         monthfactor = 2    
-      for country in monthdictionary:
-        try:
-          aggregationdictionary[country] += int(int(monthdictionary[country].replace(',',''))*monthfactor)
-        except KeyError:
-          aggregationdictionary[country] = int(int(monthdictionary[country].replace(',',''))*monthfactor)
+      #for country in monthdictionary:
+        #try:
+          #aggregationdictionary[country] += int(int(monthdictionary[country].replace(',',''))*monthfactor)
+        #except KeyError:
+          #aggregationdictionary[country] = int(int(monthdictionary[country].replace(',',''))*monthfactor)
           
     for k in aggregationdictionary:
       print k, aggregationdictionary[k]
