@@ -330,7 +330,7 @@ class CountryStats(Stats):
 if __name__=='__main__':
   c = Catalog()
   print "country plot"
-  c.plotCountries(threshold=13)
+  #c.plotCountries(threshold=13)
   print 30*'-'  
   print "book plots"
   c.matplotcumulative(fontsizetotal=7)     
