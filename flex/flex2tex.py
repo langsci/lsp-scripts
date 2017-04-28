@@ -41,7 +41,7 @@ def getText(e,field,strtype):
         runs = e.findall('%s/%s/Run'%(field,strtype))
         a = []
         for run in runs:
-          if run.attrib.get('ws') == 'cli':
+          if run.attrib.get('ws') == 'cli' or run.attrib.get('namedStyle') == 'Emphasized Text':
             a.append("\\textsl{%s}" % run.text)
           else:
             a.append(run.text)
@@ -190,7 +190,7 @@ class Sense():
         if self.lsgloss:
             print cmd('lsgloss',self.lsgloss,indent=3).encode('utf8')
         if len(self.examples) == 1:
-            print '{\\startexample}'
+            print '{\\startexample}%'
             self.examples[0].toLatex()
         elif len(self.examples) > 1:
             print '{\\startexample}'
@@ -201,7 +201,8 @@ class Sense():
         if self.scientificname:
             print "%s\n{\\definitioncloser}" % cmd('sciname',self.scientificname)
         else:
-          print "{\\definitioncloser}"
+          if len(self.examples) == 0: #examples come with their own punctuation
+            print "{\\definitioncloser}"
         for u in self.usagetypes:
             print cmd('usage',u)
         #if self.synpos:
@@ -333,8 +334,11 @@ class VariantFormEntryBackRefs ():
           self.lexentryreflinks = [LexEntryReflink(lerl) for lerl in e.findall('LexEntryRefLink')]
       
       def toLatex(self):
-          for l in self.lexentryreflinks:
-              l.toLatex()
+        if len(self.lexentryreflinks)>0:
+          print cmd('varblockopener','')
+        print ', '.join([l.prepareLatex() for l in self.lexentryreflinks]).encode('utf8')+'%'         
+        if len(self.lexentryreflinks)>0:
+          print cmd('varblockcloser','')
 
 class VisibleVariantEntryRef ():
       def __init__(self,e): 
@@ -345,8 +349,11 @@ class VisibleVariantEntryRef ():
           self.lexentryreflinks = [LexEntryReflinkV(lerlv) for lerlv in e.findall('LexEntryRefLink')]
       
       def toLatex(self):
-          for l in self.lexentryreflinks:
-              l.toLatex()
+          if len(self.lexentryreflinks)>0:
+            print cmd('varofblockopener','')
+          print ','.join([l.prepareLatex() for l in self.lexentryreflinks]).encode('utf8')+'%'            
+          if len(self.lexentryreflinks)>0:
+            print cmd('varofblockcloser','')
         
         
 class LexEntryReflink():
@@ -359,11 +366,12 @@ class LexEntryReflink():
             self.vet='empty'
           self.vet=self.vet.replace('.','').replace(' ','')
           
-    def toLatex(self):
+    def prepareLatex(self):
           latexalt = re.sub('(.*)([0-9]+)$',r'\\textsuperscript{\2}\1', self.alt)
           #latexalt = self.alt.replace('1','\\textsuperscript{1}')
-          s = "\\type%s{\hyperlink{%s}{%s}}%%"%(self.vet,self.target,latexalt)
-          print s.encode('utf8')
+          latexalt = hyphenate(latexalt)
+          s = "\\type%s{\hyperlink{%s}{%s}}"%(self.vet,self.target,latexalt)
+          return s
         
          
 
@@ -378,9 +386,12 @@ class LexEntryReflinkV():
           self.cl = e.find('LexEntryRef_ComponentLexemes/Link').attrib['target']
             
           
-    def toLatex(self):
-          s = " \\type%s{\hyperlink{%s}{%s}}%%"%(self.vet,self.cl,linkd.get(self.cl,'\\error{no label for link!}'))
-          print s.encode('utf8')
+    def prepareLatex(self):
+          s = " \\type%s{\hyperlink{%s}{%s}}"%(self.vet,
+                                              self.cl,
+                                              hyphenate(linkd[self.cl]))
+          return s
+            
                 
 
 #===================
@@ -394,15 +405,21 @@ lexentries = []
 for entry in root.findall('.//LexEntry'):
   lexentries.append(LexEntry(entry))
   
+ 
 linkd = {}
 for le in lexentries:
   ID = le.ID
-  headword = le.headword.word
+  headword = le.headword.word 
   linkd[le.ID] = headword
    
 
 for le in lexentries:
   print "%"+30*"-"
   le.toLatex()
-
+  #print le.headword.word
+  #print le.headword.homograph
+  #try:
+    #print le.senses[0].definition
+  #except:
+    #pass
   
