@@ -56,6 +56,7 @@ class Catalog():
     shapes = 'v^osp*D'    
     self.books = {} 
     for l in lines:
+      print l
       if l.strip()!='':
         ID, title = l.strip().split('\t') 
         ID = int(ID)
@@ -81,18 +82,22 @@ class Catalog():
           try: 
             aggregationdictionary[book][month] = int(self.monthstats[month][book]*monthfactor)
           except KeyError:          
-            aggregationdictionary[book][month] = 0       
+            aggregationdictionary[book][month] = 0        
+      #take care of second edition of EGBD
       try:
-        aggregationdictionary[46101][month] = aggregationdictionary[46][month]
-      except KeyError:
-        aggregationdictionary[46101][month] = 0
-      try:
-        aggregationdictionary[46101][month] += aggregationdictionary[101][month]    
+        aggregationdictionary[46][month] += aggregationdictionary[101][month]    
+        aggregationdictionary[101][month] = 0 
       except KeyError:
         pass
-      
-    aggregationdictionary[52]["2016_06"] = 48 #logging was off in that month
-    aggregationdictionary[53]["2016_06"] = 84 #logging was off in that month   
+ 
+    try:  
+      aggregationdictionary[52]["2016_06"] = 48 #logging was off in that month
+    except KeyError:
+      pass    
+    try:  
+      aggregationdictionary[53]["2016_06"] = 84 #logging was off in that month   
+    except KeyError:
+      pass
     for bookID in aggregationdictionary:
       self.books[bookID].downloads = aggregationdictionary[bookID]
     
@@ -111,7 +116,7 @@ class Catalog():
     #ax.axis('off')
     return fig, plt
   
-  def matplotcumulative(self,ID=False, legend=True, fontsizetotal=15, threshold=99, timeframe=13):
+  def matplotcumulative(self,typ='',ID=False, legend=True, fontsizetotal=15, threshold=99, timeframe=13):
     """
     produce cumulative graph
     
@@ -165,8 +170,8 @@ class Catalog():
       stretchfactor=25/graphs
       ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1,labelspacing=stretchfactor)     
     #save file
-    plt.savefig('cumulativeall.svg')
-    plt.savefig('cumulativeall.png')
+    plt.savefig('cumulativeall%s.svg'%typ)
+    plt.savefig('cumulativeall%s.png'%typ)
     plt.close(fig)   
     print "plotted cumulative graph"
     print "total downloads of all books:", aggregatedownloads    
@@ -328,9 +333,15 @@ class CountryStats(Stats):
 
                     
 if __name__=='__main__':
-  c = Catalog()
-  print "country plot"
+  monographs = Catalog(booksfile='monographs.tsv')
+  #print "country plot"
   #c.plotCountries(threshold=13)
-  print 30*'-'  
-  print "book plots"
-  c.matplotcumulative(fontsizetotal=7)     
+  #print 30*'-'  
+  print "monograph plots"
+  monographs.matplotcumulative(fontsizetotal=7,typ='monograph')     
+  editedvolumes = Catalog(booksfile='editedvolumes.tsv')
+  #print "country plot"
+  #c.plotCountries(threshold=13)
+  #print 30*'-'  
+  print "volume plots"
+  editedvolumes.matplotcumulative(fontsizetotal=7,typ='editedvolume')     
