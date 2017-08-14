@@ -174,7 +174,7 @@ class Catalog():
     plt.savefig('cumulativeall%s.png'%typ)
     plt.close(fig)   
     print "plotted cumulative graph"
-    print "total downloads of all books:", aggregatedownloads    
+    print "total downloads of all %ss:"%typ, aggregatedownloads    
     print "plotting invididual graphs: "
     #individual plots
     for bookID in self.books:
@@ -203,7 +203,7 @@ class Catalog():
       bookplt.close(fig)    
       print bookID,   
    
-  def plotCountries(self,threshold=12):
+  def plotCountries(self,threshold=12, typ=''):
     """
     Produce a pie chart of downloads per country.
     $threshold countries will be named, the rest
@@ -218,11 +218,11 @@ class Catalog():
         monthfactor = 1.3        
       if month == "2016_06": #in June 2016, only 15/30 days were logged
         monthfactor = 2    
-      #for country in monthdictionary:
-        #try:
-          #aggregationdictionary[country] += int(int(monthdictionary[country].replace(',',''))*monthfactor)
-        #except KeyError:
-          #aggregationdictionary[country] = int(int(monthdictionary[country].replace(',',''))*monthfactor)
+      for country in monthdictionary:
+        try:
+          aggregationdictionary[country] += int(int(monthdictionary[country].replace(',',''))*monthfactor)
+        except KeyError:
+          aggregationdictionary[country] = int(int(monthdictionary[country].replace(',',''))*monthfactor)
           
     for k in aggregationdictionary:
       print k, aggregationdictionary[k]
@@ -248,8 +248,8 @@ class Catalog():
     ax.set_position([box.x0, box.y0, box.width * 0.66, box.height]) 
     plt.pie(values, labels=labels, colors=colors, labeldistance=1.4)
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),frameon=False,numpoints=1) 
-    plt.savefig('countries.png') 
-    plt.savefig('countries.svg') 
+    plt.savefig('%scountries.png'%typ) 
+    plt.savefig('%scountries.svg'%typ) 
          
 class Stats():
   def __init__(self,f):
@@ -334,14 +334,13 @@ class CountryStats(Stats):
                     
 if __name__=='__main__':
   monographs = Catalog(booksfile='monographs.tsv')
-  #print "country plot"
-  #c.plotCountries(threshold=13)
-  #print 30*'-'  
   print "monograph plots"
   monographs.matplotcumulative(fontsizetotal=7,typ='monograph')     
   editedvolumes = Catalog(booksfile='editedvolumes.tsv')
-  #print "country plot"
-  #c.plotCountries(threshold=13)
-  #print 30*'-'  
+   
   print "volume plots"
-  editedvolumes.matplotcumulative(fontsizetotal=7,typ='editedvolume')     
+  editedvolumes.matplotcumulative(fontsizetotal=7,typ='editedvolume')   
+  #print "country plot"
+  #monographs.plotCountries(threshold=13,typ='monographs')
+  #editedvolumes.plotCountries(threshold=13,typ='editedvolumes')
+  #print 30*'-'    
