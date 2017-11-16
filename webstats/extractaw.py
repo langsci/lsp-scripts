@@ -223,6 +223,8 @@ class Catalog():
           aggregationdictionary[country] += int(int(monthdictionary[country].replace(',',''))*monthfactor)
         except KeyError:
           aggregationdictionary[country] = int(int(monthdictionary[country].replace(',',''))*monthfactor)
+        except ValueError:
+          pass
           
     for k in aggregationdictionary:
       print k, aggregationdictionary[k]
@@ -334,13 +336,15 @@ class CountryStats(Stats):
                     
 if __name__=='__main__':
   monographs = Catalog(booksfile='monographs.tsv')
-  print "monograph plots"
-  monographs.matplotcumulative(fontsizetotal=7,typ='monograph')     
   editedvolumes = Catalog(booksfile='editedvolumes.tsv')
+  
+  #print "monograph plots"
+  monographs.matplotcumulative(fontsizetotal=7,typ='monograph')     
    
-  print "volume plots"
+  #print "volume plots"
   editedvolumes.matplotcumulative(fontsizetotal=7,typ='editedvolume')   
+  
   #print "country plot"
-  #monographs.plotCountries(threshold=13,typ='monographs')
-  #editedvolumes.plotCountries(threshold=13,typ='editedvolumes')
-  #print 30*'-'    
+  #monographs.plotCountries(threshold=20,typ='monographs')
+  #editedvolumes.plotCountries(threshold=23,typ='editedvolumes')
+  print 30*'-'    
