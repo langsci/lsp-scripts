@@ -31,6 +31,7 @@ function setChanger (jNode) {
 // signal status by color  
   $("#userGroupId").css({'background':'red'});     
   $("#userGroupId").blur( function(){changeOrder(jNode)  
+})
 }
 
                          
