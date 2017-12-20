@@ -12,7 +12,7 @@ import pprint
 
 class Book():
   def __init__(self, ID, title, colors, shapes):
-    seed = hash(str(ID))
+    seed = hash(str(ID)+'a')+14
     self.ID = int(ID)
     self.title = title 
     self.downloads = {}
@@ -337,12 +337,14 @@ class CountryStats(Stats):
 if __name__=='__main__':
   monographs = Catalog(booksfile='monographs.tsv')
   editedvolumes = Catalog(booksfile='editedvolumes.tsv')
+  fourthousandvolumes = Catalog(booksfile='4000.tsv')
   
   #print "monograph plots"
   monographs.matplotcumulative(fontsizetotal=7,typ='monograph')     
    
   #print "volume plots"
   editedvolumes.matplotcumulative(fontsizetotal=7,typ='editedvolume')   
+  fourthousandvolumes.matplotcumulative(fontsizetotal=7,typ='4000')   
   
   #print "country plot"
   #monographs.plotCountries(threshold=20,typ='monographs')
