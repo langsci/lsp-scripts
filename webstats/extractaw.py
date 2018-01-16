@@ -335,18 +335,17 @@ class CountryStats(Stats):
 
                     
 if __name__=='__main__':
-  monographs = Catalog(booksfile='monographs.tsv')
-  editedvolumes = Catalog(booksfile='editedvolumes.tsv')
-  fourthousandvolumes = Catalog(booksfile='4000.tsv')
+  #monographs = Catalog(booksfile='monographs.tsv')
+  #editedvolumes = Catalog(booksfile='editedvolumes.tsv')
+  #fourthousandvolumes = Catalog(booksfile='4000.tsv')
   
-  #print "monograph plots"
-  monographs.matplotcumulative(fontsizetotal=7,typ='monograph')     
+  ##print "monograph plots"
+  #monographs.matplotcumulative(fontsizetotal=7,typ='monograph')     
    
-  #print "volume plots"
-  editedvolumes.matplotcumulative(fontsizetotal=7,typ='editedvolume')   
-  fourthousandvolumes.matplotcumulative(fontsizetotal=7,typ='4000')   
+  ##print "volume plots"
+  #editedvolumes.matplotcumulative(fontsizetotal=7,typ='editedvolume')   
+  #fourthousandvolumes.matplotcumulative(fontsizetotal=7,typ='4000')   
   
   #print "country plot"
-  #monographs.plotCountries(threshold=20,typ='monographs')
-  #editedvolumes.plotCountries(threshold=23,typ='editedvolumes')
+  Catalog(booksfile='allbooks.tsv').plotCountries(threshold=20,typ='all')
   print 30*'-'    
