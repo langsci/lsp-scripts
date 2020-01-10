@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     LangSciPress, order participants alphabetically
-// @include  http://langsci-press.org/workflow/*
+// @include  https://langsci-press.org/workflow/*
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
 // @require  https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @grant    GM_addStyle
