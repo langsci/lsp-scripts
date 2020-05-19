@@ -1,4 +1,4 @@
-Attribute VB_Name = "Modul1"
+Attribute VB_Name = "WordTables"
 Sub ConvertTablesToText()
 Dim table As table
 For Each table In ActiveDocument.Tables
